@@ -1,0 +1,60 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  container?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  container = true,
+  class: className = ''
+} = Astro.props;
+---
+
+<section class={className}>
+  {container && (
+    <div class="max-w-6xl mx-auto px-4">
+      {(title || subtitle) && (
+        <div class="text-center mb-16">
+          {title && (
+            <h2 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
+              {title}
+            </h2>
+          )}
+          {subtitle && (
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+              {subtitle}
+            </p>
+          )}
+        </div>
+      )}
+      
+      <slot />
+    </div>
+  )}
+  
+  {!container && (
+    <>
+      {(title || subtitle) && (
+        <div class="text-center mb-16">
+          {title && (
+            <h2 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
+              {title}
+            </h2>
+          )}
+          {subtitle && (
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+              {subtitle}
+            </p>
+          )}
+        </div>
+      )}
+      
+      <slot />
+    </>
+  )}
+</section>
+

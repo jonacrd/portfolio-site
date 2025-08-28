@@ -1,0 +1,180 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Section, Card, Button } from '../components';
+---
+
+<Layout 
+  title="Servicios de Desarrollo Web | Landing Pages, Sitios Web y Más"
+  description="Servicios de desarrollo web freelance: landing pages, sitios estáticos, mejora CSS, catálogos digitales y formularios conectados. Precios desde €149."
+>
+
+  <div class="min-h-screen py-12">
+    <Section 
+      title="Mis Servicios"
+      subtitle="Soluciones web completas para hacer crecer tu presencia digital"
+      container={false}
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Landing OnePage -->
+        <Card
+          title="Landing OnePage"
+          bullets={[
+            "5 secciones optimizadas",
+            "Entrega en 72 horas",
+            "SEO básico incluido"
+          ]}
+          cta={{
+            text: "Solicitar",
+            href: "/contacto?tipo=landing"
+          }}
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-cyan-400">$20.000
+              <p class="text-sm text-gray-400">desde</p>
+            </div>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Páginas de aterrizaje optimizadas para conversión con diseño moderno y responsive.
+          </p>
+        </Card>
+
+        <!-- Sitio Estático Local -->
+        <Card
+          title="Sitio Estático Local"
+          bullets={[
+            "3-5 páginas completas",
+            "Mapa y horarios",
+            "Integración WhatsApp"
+          ]}
+          cta={{
+            text: "Solicitar",
+            href: "/contacto?tipo=sitio-estatico"
+          }}
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-green-400">€399</p>
+              <p class="text-sm text-gray-400">desde</p>
+            </div>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Sitios web estáticos para negocios locales con funcionalidades esenciales.
+          </p>
+        </Card>
+
+        <!-- Mejora CSS/Responsive -->
+        <Card
+          title="Mejora CSS/Responsive"
+          bullets={[
+            "Auditoría completa",
+            "Paleta y tipografías",
+            "Espaciados optimizados"
+          ]}
+          cta={{
+            text: "Solicitar",
+            href: "/contacto?tipo=mejora-css"
+          }}
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4M15 7l3-3m0 0h-3m3 0v3"></path>
+              </svg>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-purple-400">€199</p>
+              <p class="text-sm text-gray-400">desde</p>
+            </div>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Optimización y mejora del diseño CSS existente para una mejor experiencia visual.
+          </p>
+        </Card>
+
+        <!-- Catálogo Digital -->
+        <Card
+          title="Catálogo Digital"
+          bullets={[
+            "Filtros avanzados",
+            "Lightbox galería",
+            "Formulario a Sheets"
+          ]}
+          cta={{
+            text: "Solicitar",
+            href: "/contacto?tipo=catalogo"
+          }}
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+              </svg>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-orange-400">€349</p>
+              <p class="text-sm text-gray-400">desde</p>
+            </div>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Catálogos digitales interactivos para mostrar productos o servicios de forma atractiva.
+          </p>
+        </Card>
+
+        <!-- Formularios Conectados -->
+        <Card
+          title="Formularios Conectados"
+          bullets={[
+            "GAS/EmailJS",
+            "Validación completa",
+            "Notificaciones"
+          ]}
+          cta={{
+            text: "Solicitar",
+            href: "/contacto?tipo=formularios"
+          }}
+        >
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-red-400">€149</p>
+              <p class="text-sm text-gray-400">desde</p>
+            </div>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Formularios web funcionales y seguros para capturar información de clientes.
+          </p>
+        </Card>
+      </div>
+
+      <Section 
+        title="¿Listo para empezar tu proyecto?"
+        subtitle="Contáctame para discutir tus necesidades y obtener una cotización personalizada para tu proyecto web."
+        container={false}
+        class="mt-16"
+      >
+        <div class="text-center">
+          <Button href="/contacto" size="lg">
+            Contactar Ahora
+          </Button>
+        </div>
+      </Section>
+    </div>
+  </div>
+</Layout>

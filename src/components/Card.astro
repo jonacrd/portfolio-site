@@ -1,0 +1,66 @@
+---
+export interface Props {
+  title: string;
+  image?: {
+    src: string;
+    alt: string;
+    gradient?: string;
+  };
+  bullets?: string[];
+  cta?: {
+    text: string;
+    href: string;
+    variant?: 'primary' | 'ghost';
+  };
+  class?: string;
+}
+
+const {
+  title,
+  image,
+  bullets = [],
+  cta,
+  class: className = ''
+} = Astro.props;
+---
+
+<div class={`bg-gray-900 rounded-lg border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 ${className}`}>
+  {image && (
+    <div class={`h-48 ${image.gradient || 'bg-gradient-to-br from-cyan-500 to-blue-600'} flex items-center justify-center`}>
+      <img src={image.src} alt={image.alt} class="w-16 h-16 text-white" />
+    </div>
+  )}
+  
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-white mb-2">
+      {title}
+    </h3>
+    
+    <slot />
+    
+    {bullets.length > 0 && (
+      <ul class="text-sm text-gray-300 mb-6 space-y-2">
+        {bullets.map((bullet) => (
+          <li class="flex items-center">
+            <span class="w-2 h-2 bg-cyan-500 rounded-full mr-3"></span>
+            {bullet}
+          </li>
+        ))}
+      </ul>
+    )}
+    
+    {cta && (
+      <a 
+        href={cta.href}
+        class={`inline-block w-full text-center font-medium py-2 px-4 rounded-lg transition-colors duration-200 ${
+          cta.variant === 'ghost' 
+            ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+            : 'bg-cyan-500 hover:bg-cyan-600 text-white'
+        }`}
+      >
+        {cta.text}
+      </a>
+    )}
+  </div>
+</div>
+
