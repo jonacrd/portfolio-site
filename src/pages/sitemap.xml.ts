@@ -9,7 +9,8 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     '/servicios',
     '/proyectos',
-    '/contacto'
+    '/contacto',
+    '/test-button'
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

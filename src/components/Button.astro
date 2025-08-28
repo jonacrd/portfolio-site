@@ -33,7 +33,11 @@ const sizeClasses = {
 const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 ---
 
-{href ? (
+{type === 'submit' || type === 'reset' ? (
+  <button type={type} class={classes} disabled={disabled}>
+    <slot />
+  </button>
+) : href ? (
   <a href={href} class={classes} role="button" tabindex="0">
     <slot />
   </a>

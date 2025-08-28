@@ -1,432 +1,69 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Section, Button } from '../components';
+const WEB_APP_URL = import.meta.env.PUBLIC_WEB_APP_URL; // se resuelve en build/SSR
 ---
+<Layout>
+  <h1 class="text-3xl mb-6">Contacto</h1>
 
-<Layout 
-  title="Contacto | Desarrollador Web Freelance"
-  description="Contacta conmigo para tu proyecto web. Formulario de contacto con validación en tiempo real. Respuesta en 24 horas. Servicios de desarrollo web freelance."
->
+  <form id="contactForm" data-endpoint={WEB_APP_URL} class="grid gap-3 max-w-lg">
+    <input name="nombre"  placeholder="Nombre completo" class="border p-2 rounded" required />
+    <input name="email"   type="email" placeholder="Correo" class="border p-2 rounded" required />
+    <select name="tipo" class="border p-2 rounded" required>
+      <option value="" selected disabled>Selecciona un servicio</option>
+      <option>Landing OnePage</option>
+      <option>Sitio Estático Local</option>
+      <option>Mejora CSS/Responsive</option>
+      <option>Catálogo Digital</option>
+      <option>Formularios Conectados</option>
+    </select>
+    <textarea name="mensaje" placeholder="Mensaje" class="border p-2 rounded" required></textarea>
 
-  <div class="min-h-screen py-12">
-    <Section 
-      title="Contacto"
-      subtitle="¿Tienes un proyecto en mente? Cuéntame sobre él y te ayudo a hacerlo realidad."
-      container={false}
-    >
-      <div class="max-w-4xl mx-auto">
-        <!-- Contact Form -->
-        <div class="bg-gray-900 rounded-lg p-8 border border-gray-800">
-          <form id="contactForm" class="space-y-6">
-            <!-- Name Field -->
-            <div>
-              <label for="nombre" class="block text-sm font-medium text-gray-300 mb-2">
-                Nombre completo <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                required
-                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-colors duration-200"
-                placeholder="Tu nombre completo"
-                aria-describedby="nombre-error"
-              />
-              <div id="nombre-error" class="hidden text-red-500 text-sm mt-1"></div>
-            </div>
+    <label class="flex items-center gap-2 text-sm">
+      <input id="policy" type="checkbox" required />
+      Acepto la política de privacidad
+    </label>
 
-            <!-- Email Field -->
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
-                Correo electrónico <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-colors duration-200"
-                placeholder="tu@email.com"
-                aria-describedby="email-error"
-              />
-              <div id="email-error" class="hidden text-red-500 text-sm mt-1"></div>
-            </div>
+    <button id="submitBtn" type="submit"
+      class="px-4 py-2 rounded bg-cyan-600 text-white disabled:opacity-50 disabled:cursor-not-allowed">
+      Enviar Mensaje
+    </button>
+    <p id="status" class="text-sm"></p>
+  </form>
 
-            <!-- Service Type Selector -->
-            <div>
-              <label for="tipo" class="block text-sm font-medium text-gray-300 mb-2">
-                Tipo de servicio <span class="text-red-500">*</span>
-              </label>
-              <select
-                id="tipo"
-                name="tipo"
-                required
-                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-colors duration-200"
-                aria-describedby="tipo-error"
-              >
-                <option value="">Selecciona un servicio</option>
-                <option value="landing">Landing OnePage</option>
-                <option value="sitio-estatico">Sitio Estático Local</option>
-                <option value="mejora-css">Mejora CSS/Responsive</option>
-                <option value="catalogo">Catálogo Digital</option>
-                <option value="formularios">Formularios Conectados</option>
-              </select>
-              <div id="tipo-error" class="hidden text-red-500 text-sm mt-1"></div>
-            </div>
+  <script type="module">
+    const form = document.getElementById('contactForm');
+    const WEB_APP_URL = form.dataset.endpoint;           // ← tomado del HTML
+    const btn = document.getElementById('submitBtn');
+    const policy = document.getElementById('policy');
+    const statusEl = document.getElementById('status');
 
-            <!-- Message Field -->
-            <div>
-              <label for="mensaje" class="block text-sm font-medium text-gray-300 mb-2">
-                Mensaje <span class="text-red-500">*</span>
-              </label>
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                rows="6"
-                required
-                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-colors duration-200 resize-vertical"
-                placeholder="Cuéntame sobre tu proyecto, objetivos, timeline y cualquier detalle que consideres importante..."
-                aria-describedby="mensaje-error"
-              ></textarea>
-              <div id="mensaje-error" class="hidden text-red-500 text-sm mt-1"></div>
-            </div>
+    function updateBtn(){ btn.disabled = !(form.checkValidity() && policy.checked); }
+    form.addEventListener('input', updateBtn);
+    form.addEventListener('change', updateBtn);
+    updateBtn();
 
-            <!-- Privacy Policy Checkbox -->
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input
-                  id="politica"
-                  name="politica"
-                  type="checkbox"
-                  required
-                  class="w-4 h-4 text-cyan-500 bg-gray-800 border-gray-700 rounded focus:ring-cyan-500 focus:ring-2"
-                  aria-describedby="politica-error"
-                />
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="politica" class="text-gray-300">
-                  Acepto la <a href="#" class="text-cyan-400 hover:text-cyan-300 underline">política de privacidad</a> 
-                  y el tratamiento de mis datos personales <span class="text-red-500">*</span>
-                </label>
-                <div id="politica-error" class="hidden text-red-500 text-sm mt-1"></div>
-              </div>
-            </div>
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) return;
 
-            <!-- Submit Button -->
-            <div class="pt-4">
-              <Button
-                type="submit"
-                size="lg"
-                class="w-full"
-                disabled
-                id="submitBtn"
-              >
-                <span id="submitText">Enviar Mensaje</span>
-                <span id="submitLoading" class="hidden">
-                  <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Enviando...
-                </span>
-              </Button>
-            </div>
-          </form>
-        </div>
+      btn.disabled = true;
+      statusEl.textContent = 'Enviando...';
+      const data = Object.fromEntries(new FormData(form).entries());
 
-        <!-- Toast Container -->
-        <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
-
-        <!-- Contact Info -->
-      <div class="mt-12 grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Email</h3>
-          <p class="text-gray-400">contacto@ejemplo.com</p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Respuesta</h3>
-          <p class="text-gray-400">En 24 horas</p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-white mb-2">Ubicación</h3>
-          <p class="text-gray-400">Remoto / España</p>
-        </div>
-      </div>
-    </Section>
-  </div>
-
-  <script>
-    // Form states and validation
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('contactForm');
-      const submitBtn = document.getElementById('submitBtn');
-      const submitText = document.getElementById('submitText');
-      const submitLoading = document.getElementById('submitLoading');
-      const toastContainer = document.getElementById('toast-container');
-
-      // Form state management
-      let formState = 'idle'; // idle, loading, success, error
-
-      // Get URL parameters to pre-select service type
-      const urlParams = new URLSearchParams(window.location.search);
-      const tipoParam = urlParams.get('tipo');
-      if (tipoParam) {
-        const tipoSelect = document.getElementById('tipo');
-        tipoSelect.value = tipoParam;
-      }
-
-      // Real-time form validation
-      const formFields = form.querySelectorAll('input, select, textarea');
-      formFields.forEach(field => {
-        field.addEventListener('input', validateForm);
-        field.addEventListener('change', validateForm);
-      });
-
-      function validateForm() {
-        const formData = new FormData(form);
-        const nombre = formData.get('nombre')?.trim() || '';
-        const email = formData.get('email')?.trim() || '';
-        const tipo = formData.get('tipo') || '';
-        const mensaje = formData.get('mensaje')?.trim() || '';
-        const politica = formData.get('politica') || '';
-
-        const isValid = 
-          nombre.length >= 2 &&
-          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-          tipo &&
-          mensaje.length >= 10 &&
-          politica;
-
-        submitBtn.disabled = !isValid || formState === 'loading';
-      }
-
-      // Form submission
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        if (formState === 'loading') return;
-        
-        // Reset previous errors
-        clearErrors();
-        
-        // Get form data
-        const formData = new FormData(form);
-        const nombre = formData.get('nombre').trim();
-        const email = formData.get('email').trim();
-        const tipo = formData.get('tipo');
-        const mensaje = formData.get('mensaje').trim();
-        const politica = formData.get('politica');
-
-        let isValid = true;
-
-        // Validate name
-        if (nombre.length < 2) {
-          showError('nombre', 'El nombre debe tener al menos 2 caracteres');
-          isValid = false;
-        }
-
-        // Validate email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-          showError('email', 'Por favor, introduce un email válido');
-          isValid = false;
-        }
-
-        // Validate service type
-        if (!tipo) {
-          showError('tipo', 'Por favor, selecciona un servicio');
-          isValid = false;
-        }
-
-        // Validate message
-        if (mensaje.length < 10) {
-          showError('mensaje', 'El mensaje debe tener al menos 10 caracteres');
-          isValid = false;
-        }
-
-        // Validate privacy policy
-        if (!politica) {
-          showError('politica', 'Debes aceptar la política de privacidad');
-          isValid = false;
-        }
-
-        if (isValid) {
-          await submitForm({ nombre, email, tipo, mensaje });
-        }
-      });
-
-      async function submitForm(formData) {
-        setFormState('loading');
-
-        try {
-          // Replace with your actual Google Apps Script Web App URL
-          const WEB_APP_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
-          // Example: https://script.google.com/macros/s/AKfycbz1234567890abcdef/exec
-          
-          const response = await fetch(WEB_APP_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-          });
-
-          if (response.ok) {
-            setFormState('success');
-            showToast('¡Mensaje enviado con éxito! Te responderé en las próximas 24 horas.', 'success');
-            form.reset();
-          } else {
-            throw new Error('Error en el servidor');
-          }
-        } catch (error) {
-          console.error('Error submitting form:', error);
-          setFormState('error');
-          showToast('Error al enviar el mensaje. Por favor, inténtalo de nuevo.', 'error');
-        }
-      }
-
-      function setFormState(state) {
-        formState = state;
-        
-        switch (state) {
-          case 'idle':
-            submitText.classList.remove('hidden');
-            submitLoading.classList.add('hidden');
-            submitBtn.disabled = false;
-            break;
-          case 'loading':
-            submitText.classList.add('hidden');
-            submitLoading.classList.remove('hidden');
-            submitBtn.disabled = true;
-            break;
-          case 'success':
-            submitText.textContent = '¡Enviado!';
-            submitText.classList.remove('hidden');
-            submitLoading.classList.add('hidden');
-            submitBtn.disabled = true;
-            setTimeout(() => {
-              setFormState('idle');
-              submitText.textContent = 'Enviar Mensaje';
-            }, 3000);
-            break;
-          case 'error':
-            submitText.textContent = 'Error - Reintentar';
-            submitText.classList.remove('hidden');
-            submitLoading.classList.add('hidden');
-            submitBtn.disabled = false;
-            setTimeout(() => {
-              setFormState('idle');
-              submitText.textContent = 'Enviar Mensaje';
-            }, 3000);
-            break;
-        }
-        
-        validateForm();
-      }
-
-      function showToast(message, type = 'info') {
-        const toast = document.createElement('div');
-        const id = 'toast-' + Date.now();
-        toast.id = id;
-        
-        const bgColor = type === 'success' ? 'bg-green-900' : 
-                       type === 'error' ? 'bg-red-900' : 'bg-blue-900';
-        const borderColor = type === 'success' ? 'border-green-700' : 
-                           type === 'error' ? 'border-red-700' : 'border-blue-700';
-        const textColor = type === 'success' ? 'text-green-400' : 
-                         type === 'error' ? 'text-red-400' : 'text-blue-400';
-        const iconColor = type === 'success' ? 'text-green-400' : 
-                         type === 'error' ? 'text-red-400' : 'text-blue-400';
-
-        const icon = type === 'success' ? 
-          '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>' :
-          type === 'error' ?
-          '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>' :
-          '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>';
-
-        toast.className = `${bgColor} ${borderColor} ${textColor} p-4 rounded-lg border shadow-lg max-w-sm transform transition-all duration-300 translate-x-full`;
-        toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
-        toast.setAttribute('aria-live', 'polite');
-        
-        toast.innerHTML = `
-          <div class="flex items-start">
-            <div class="flex-shrink-0 ${iconColor} mr-3">
-              ${icon}
-            </div>
-            <div class="flex-1">
-              <p class="text-sm font-medium">${message}</p>
-            </div>
-            <button onclick="this.parentElement.parentElement.remove()" class="ml-3 flex-shrink-0 text-gray-400 hover:text-gray-300 focus:outline-none">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-              </svg>
-            </button>
-          </div>
-        `;
-
-        toastContainer.appendChild(toast);
-
-        // Animate in
-        setTimeout(() => {
-          toast.classList.remove('translate-x-full');
-        }, 100);
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-          if (toast.parentElement) {
-            toast.classList.add('translate-x-full');
-            setTimeout(() => {
-              if (toast.parentElement) {
-                toast.remove();
-              }
-            }, 300);
-          }
-        }, 5000);
-      }
-
-      function showError(fieldId, message) {
-        const errorElement = document.getElementById(`${fieldId}-error`);
-        errorElement.textContent = message;
-        errorElement.classList.remove('hidden');
-        
-        const field = document.getElementById(fieldId);
-        field.classList.add('border-red-500');
-        field.classList.remove('border-gray-700');
-      }
-
-      function clearErrors() {
-        const errorElements = document.querySelectorAll('[id$="-error"]');
-        errorElements.forEach(element => {
-          element.classList.add('hidden');
+      try {
+        await fetch(WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(data)
         });
-
-        const fields = form.querySelectorAll('input, select, textarea');
-        fields.forEach(field => {
-          field.classList.remove('border-red-500');
-          field.classList.add('border-gray-700');
-        });
+        statusEl.textContent = 'Enviado ✔';
+        form.reset();
+      } catch {
+        statusEl.textContent = 'Error de red';
+      } finally {
+        updateBtn();
       }
-
-      // Initial validation
-      validateForm();
     });
   </script>
 </Layout>
