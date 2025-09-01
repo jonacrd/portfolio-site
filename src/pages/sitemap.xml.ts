@@ -10,7 +10,9 @@ export const GET: APIRoute = async ({ site }) => {
     '/servicios',
     '/proyectos',
     '/contacto',
-    '/test-button'
+    '/demos/landing-basica',
+    '/demos/restaurante',
+    '/demos/forms'
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -32,4 +34,3 @@ export const GET: APIRoute = async ({ site }) => {
     }
   });
 };
-

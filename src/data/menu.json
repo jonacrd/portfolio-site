@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ensalada César",
+    "categoria": "Entradas",
+    "precio": 8.50,
+    "img": "/demos/restaurante/ensalada-cesar.webp",
+    "desc": "Lechuga romana, crutones, parmesano y aderezo César casero"
+  },
+  {
+    "id": 2,
+    "nombre": "Carpaccio de Res",
+    "categoria": "Entradas",
+    "precio": 12.00,
+    "img": "/demos/restaurante/carpaccio-res.webp",
+    "desc": "Finas láminas de res cruda con aceite de oliva, limón y parmesano"
+  },
+  {
+    "id": 3,
+    "nombre": "Sopa de Mariscos",
+    "categoria": "Entradas",
+    "precio": 9.50,
+    "img": "/demos/restaurante/sopa-mariscos.webp",
+    "desc": "Sopa cremosa con gambas, almejas y pescado fresco"
+  },
+  {
+    "id": 4,
+    "nombre": "Bruschetta",
+    "categoria": "Entradas",
+    "precio": 7.00,
+    "img": "/demos/restaurante/bruschetta.webp",
+    "desc": "Pan tostado con tomate, albahaca y mozzarella"
+  },
+  {
+    "id": 5,
+    "nombre": "Filete de Res",
+    "categoria": "Platos",
+    "precio": 24.50,
+    "img": "/demos/restaurante/filete-res.webp",
+    "desc": "Filete de res a la parrilla con guarnición de vegetales"
+  },
+  {
+    "id": 6,
+    "nombre": "Pasta Carbonara",
+    "categoria": "Platos",
+    "precio": 16.00,
+    "img": "/demos/restaurante/pasta-carbonara.webp",
+    "desc": "Espagueti con salsa cremosa, panceta y parmesano"
+  },
+  {
+    "id": 7,
+    "nombre": "Salmón a la Plancha",
+    "categoria": "Platos",
+    "precio": 22.00,
+    "img": "/demos/restaurante/salmon-plancha.webp",
+    "desc": "Salmón fresco a la plancha con salsa de eneldo"
+  },
+  {
+    "id": 8,
+    "nombre": "Pollo Marsala",
+    "categoria": "Platos",
+    "precio": 18.50,
+    "img": "/demos/restaurante/pollo-marsala.webp",
+    "desc": "Pechuga de pollo en salsa Marsala con champiñones"
+  },
+  {
+    "id": 9,
+    "nombre": "Paella Valenciana",
+    "categoria": "Platos",
+    "precio": 28.00,
+    "img": "/demos/restaurante/paella-valenciana.webp",
+    "desc": "Arroz con mariscos, pollo y verduras al estilo valenciano"
+  },
+  {
+    "id": 10,
+    "nombre": "Risotto de Champiñones",
+    "categoria": "Platos",
+    "precio": 17.50,
+    "img": "/demos/restaurante/risotto-champinones.webp",
+    "desc": "Arroz cremoso con champiñones silvestres y parmesano"
+  },
+  {
+    "id": 11,
+    "nombre": "Limonada Natural",
+    "categoria": "Bebidas",
+    "precio": 4.50,
+    "img": "/demos/restaurante/limonada-natural.webp",
+    "desc": "Limonada fresca con menta y un toque de jengibre"
+  },
+  {
+    "id": 12,
+    "nombre": "Vino Tinto de la Casa",
+    "categoria": "Bebidas",
+    "precio": 8.00,
+    "img": "/demos/restaurante/vino-tinto.webp",
+    "desc": "Copa de vino tinto seleccionado de nuestra bodega"
+  },
+  {
+    "id": 13,
+    "nombre": "Cerveza Artesanal",
+    "categoria": "Bebidas",
+    "precio": 6.50,
+    "img": "/demos/restaurante/cerveza-artesanal.webp",
+    "desc": "Cerveza artesanal local con sabor único"
+  },
+  {
+    "id": 14,
+    "nombre": "Café Espresso",
+    "categoria": "Bebidas",
+    "precio": 3.50,
+    "img": "/demos/restaurante/cafe-espresso.webp",
+    "desc": "Café espresso italiano recién molido"
+  },
+  {
+    "id": 15,
+    "nombre": "Tiramisú",
+    "categoria": "Postres",
+    "precio": 8.50,
+    "img": "/demos/restaurante/tiramisu.webp",
+    "desc": "Postre italiano con mascarpone, café y cacao"
+  },
+  {
+    "id": 16,
+    "nombre": "Crème Brûlée",
+    "categoria": "Postres",
+    "precio": 7.50,
+    "img": "/demos/restaurante/creme-brulee.webp",
+    "desc": "Natilla francesa con costra caramelizada"
+  },
+  {
+    "id": 17,
+    "nombre": "Chocolate Lava Cake",
+    "categoria": "Postres",
+    "precio": 9.00,
+    "img": "/demos/restaurante/chocolate-lava.webp",
+    "desc": "Pastel de chocolate con centro líquido y helado"
+  },
+  {
+    "id": 18,
+    "nombre": "Cheesecake de Frutos Rojos",
+    "categoria": "Postres",
+    "precio": 8.00,
+    "img": "/demos/restaurante/cheesecake-frutos.webp",
+    "desc": "Tarta de queso con salsa de frutos rojos"
+  },
+  {
+    "id": 19,
+    "nombre": "Flan Casero",
+    "categoria": "Postres",
+    "precio": 6.50,
+    "img": "/demos/restaurante/flan-casero.webp",
+    "desc": "Flan tradicional con caramelo líquido"
+  },
+  {
+    "id": 20,
+    "nombre": "Helado Artesanal",
+    "categoria": "Postres",
+    "precio": 5.50,
+    "img": "/demos/restaurante/helado-artesanal.webp",
+    "desc": "Helado artesanal con sabores de temporada"
+  }
+]
+
+
+
+
+

@@ -1,0 +1,447 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import menuData from '../../data/menu.json';
+
+// Obtener categorías únicas
+const categorias = ['Todos', ...new Set(menuData.map(item => item.categoria))];
+---
+
+<Layout 
+  title="Restaurante Demo | Carta Digital"
+  description="Explora nuestra carta digital con platos exquisitos. Filtra por categorías y descubre los detalles de cada plato. Experiencia gastronómica única."
+>
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-900 via-orange-800 to-red-900 relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
+      <div class="animate-fade-in">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+          La <span class="text-amber-400">Nave</span> del Sabor
+        </h1>
+        <p class="text-xl md:text-2xl text-amber-100 mb-8 max-w-3xl mx-auto">
+          Descubre nuestra carta digital con los mejores platos de la gastronomía internacional. 
+          Una experiencia culinaria que despertará todos tus sentidos.
+        </p>
+        <a href="#carta" class="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+          Ver Carta
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carta Section -->
+  <section id="carta" class="py-20 bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          Nuestra Carta
+        </h2>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+          Explora nuestra selección de platos cuidadosamente preparados por nuestros chefs
+        </p>
+      </div>
+
+      <!-- Filtros de Categoría -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        {categorias.map((categoria) => (
+          <button
+            class="categoria-btn px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            data-categoria={categoria === 'Todos' ? 'todos' : categoria}
+            data-active={categoria === 'Todos' ? 'true' : 'false'}
+          >
+            {categoria}
+          </button>
+        ))}
+      </div>
+
+      <!-- Grid de Platos -->
+      <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {menuData.map((plato) => (
+          <div 
+            class="plato-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-amber-500 transition-all duration-300 cursor-pointer transform hover:scale-105"
+            data-categoria={plato.categoria}
+            data-plato-id={plato.id}
+            tabindex="0"
+            role="button"
+            aria-label={`Ver detalles de ${plato.nombre}`}
+          >
+            <div class="relative h-48 bg-gradient-to-br from-amber-500 to-orange-600">
+              <img 
+                src={plato.img} 
+                alt={plato.nombre}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                width="400"
+                height="300"
+              />
+              <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                €{plato.precio.toFixed(2)}
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-semibold text-white">{plato.nombre}</h3>
+                <span class="text-amber-400 text-sm font-medium">{plato.categoria}</span>
+              </div>
+              <p class="text-gray-300 text-sm line-clamp-2">{plato.desc}</p>
+              <button 
+                class="mt-4 text-amber-400 hover:text-amber-300 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 rounded"
+                onclick={`openModal(${plato.id})`}
+              >
+                Ver detalles →
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de Detalle -->
+  <div 
+    id="modal-overlay" 
+    class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+  >
+    <div 
+      id="modal-content"
+      class="bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      role="document"
+    >
+      <div class="relative">
+        <!-- Imagen del plato -->
+        <div class="relative h-64 bg-gradient-to-br from-amber-500 to-orange-600">
+          <img 
+            id="modal-img"
+            src="" 
+            alt=""
+            class="w-full h-full object-cover"
+            width="600"
+            height="400"
+          />
+          <button 
+            id="modal-close"
+            class="absolute top-4 right-4 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500"
+            aria-label="Cerrar modal"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h2 id="modal-title" class="text-2xl font-bold text-white"></h2>
+            <span id="modal-categoria" class="text-amber-400 font-medium"></span>
+          </div>
+          
+          <p id="modal-description" class="text-gray-300 mb-6"></p>
+          
+          <div class="flex items-center justify-between">
+            <div class="text-2xl font-bold text-amber-400" id="modal-precio"></div>
+            <button 
+              class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+              onclick="addToCart()"
+            >
+              Añadir al Pedido
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Focus trap elements -->
+  <div id="focus-trap-start" tabindex="0" class="sr-only"></div>
+  <div id="focus-trap-end" tabindex="0" class="sr-only"></div>
+
+  <script>
+    // Datos del menú
+    const menuData = JSON.parse('${JSON.stringify(menuData)}');
+    
+    // Variables globales
+    let currentFilter = 'todos';
+    let currentModalPlato = null;
+    let focusableElements = [];
+    let firstFocusableElement = null;
+    let lastFocusableElement = null;
+
+    // Elementos del DOM
+    const categoriaBtns = document.querySelectorAll('.categoria-btn');
+    const platoCards = document.querySelectorAll('.plato-card');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalContent = document.getElementById('modal-content');
+    const modalClose = document.getElementById('modal-close');
+    const focusTrapStart = document.getElementById('focus-trap-start');
+    const focusTrapEnd = document.getElementById('focus-trap-end');
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+      setupFilters();
+      setupModal();
+      setupKeyboardNavigation();
+      setupFocusTrap();
+    });
+
+    // Configurar filtros
+    function setupFilters() {
+      categoriaBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const categoria = this.dataset.categoria;
+          filterPlatos(categoria);
+          updateActiveButton(this);
+        });
+      });
+    }
+
+    // Filtrar platos
+    function filterPlatos(categoria) {
+      currentFilter = categoria;
+      
+      platoCards.forEach(card => {
+        const cardCategoria = card.dataset.categoria;
+        const shouldShow = categoria === 'todos' || cardCategoria === categoria;
+        
+        if (shouldShow) {
+          card.style.display = 'block';
+          card.classList.add('animate-fade-in');
+        } else {
+          card.style.display = 'none';
+          card.classList.remove('animate-fade-in');
+        }
+      });
+    }
+
+    // Actualizar botón activo
+    function updateActiveButton(activeBtn) {
+      categoriaBtns.forEach(btn => {
+        btn.dataset.active = 'false';
+        btn.classList.remove('bg-amber-500', 'text-white');
+        btn.classList.add('bg-gray-700', 'text-gray-300', 'hover:bg-gray-600');
+      });
+      
+      activeBtn.dataset.active = 'true';
+      activeBtn.classList.remove('bg-gray-700', 'text-gray-300', 'hover:bg-gray-600');
+      activeBtn.classList.add('bg-amber-500', 'text-white');
+    }
+
+    // Configurar modal
+    function setupModal() {
+      // Abrir modal al hacer clic en las tarjetas
+      platoCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const platoId = parseInt(this.dataset.platoId);
+          openModal(platoId);
+        });
+        
+        // Abrir modal con Enter
+        card.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const platoId = parseInt(this.dataset.platoId);
+            openModal(platoId);
+          }
+        });
+      });
+
+      // Cerrar modal
+      modalClose.addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+    }
+
+    // Configurar navegación por teclado
+    function setupKeyboardNavigation() {
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('flex')) {
+          closeModal();
+        }
+      });
+    }
+
+    // Configurar focus trap
+    function setupFocusTrap() {
+      focusTrapStart.addEventListener('focus', function() {
+        lastFocusableElement.focus();
+      });
+      
+      focusTrapEnd.addEventListener('focus', function() {
+        firstFocusableElement.focus();
+      });
+    }
+
+    // Abrir modal
+    function openModal(platoId) {
+      const plato = menuData.find(p => p.id === platoId);
+      if (!plato) return;
+
+      currentModalPlato = plato;
+      
+      // Actualizar contenido del modal
+      document.getElementById('modal-title').textContent = plato.nombre;
+      document.getElementById('modal-categoria').textContent = plato.categoria;
+      document.getElementById('modal-description').textContent = plato.desc;
+      document.getElementById('modal-precio').textContent = `€${plato.precio.toFixed(2)}`;
+      document.getElementById('modal-img').src = plato.img;
+      document.getElementById('modal-img').alt = plato.nombre;
+
+      // Mostrar modal
+      modalOverlay.classList.remove('hidden');
+      modalOverlay.classList.add('flex');
+      
+      // Configurar focus trap
+      setupModalFocusTrap();
+      
+      // Enfocar el botón de cerrar
+      setTimeout(() => {
+        modalClose.focus();
+      }, 100);
+
+      // Prevenir scroll del body
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Cerrar modal
+    function closeModal() {
+      modalOverlay.classList.add('hidden');
+      modalOverlay.classList.remove('flex');
+      
+      // Restaurar scroll del body
+      document.body.style.overflow = '';
+      
+      // Enfocar el elemento que abrió el modal
+      if (currentModalPlato) {
+        const platoCard = document.querySelector(`[data-plato-id="${currentModalPlato.id}"]`);
+        if (platoCard) {
+          platoCard.focus();
+        }
+      }
+      
+      currentModalPlato = null;
+    }
+
+    // Configurar focus trap del modal
+    function setupModalFocusTrap() {
+      // Obtener elementos focusables dentro del modal
+      focusableElements = modalContent.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      
+      firstFocusableElement = focusableElements[0];
+      lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+      // Configurar focus trap
+      modalContent.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+              e.preventDefault();
+              lastFocusableElement.focus();
+            }
+          } else {
+            if (document.activeElement === lastFocusableElement) {
+              e.preventDefault();
+              firstFocusableElement.focus();
+            }
+          }
+        }
+      });
+    }
+
+    // Función para añadir al carrito (simulada)
+    function addToCart() {
+      if (!currentModalPlato) return;
+      
+      // Simular añadir al carrito
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+      notification.textContent = `¡${currentModalPlato.nombre} añadido al carrito!`;
+      
+      document.body.appendChild(notification);
+      
+      // Animar entrada
+      setTimeout(() => {
+        notification.classList.remove('translate-x-full');
+      }, 100);
+      
+      // Remover después de 3 segundos
+      setTimeout(() => {
+        notification.classList.add('translate-x-full');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+      
+      closeModal();
+    }
+
+    // Función global para abrir modal (usada en onclick)
+    window.openModal = openModal;
+    window.addToCart = addToCart;
+
+    // CSS para animaciones
+    const style = document.createElement('style');
+    style.textContent = `
+      .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      
+      .categoria-btn[data-active="true"] {
+        background-color: rgb(245 158 11);
+        color: white;
+      }
+      
+      .categoria-btn[data-active="false"] {
+        background-color: rgb(55 65 81);
+        color: rgb(209 213 219);
+      }
+      
+      .categoria-btn[data-active="false"]:hover {
+        background-color: rgb(75 85 99);
+      }
+      
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</Layout>

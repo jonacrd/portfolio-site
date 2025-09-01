@@ -97,3 +97,5 @@ Añade en `Layout.astro` antes de `</head>`:
 
 ¡Tu sitio web está completamente optimizado para SEO! 🎉
 
+
+

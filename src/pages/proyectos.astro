@@ -5,225 +5,152 @@ import Card from '../components/Card.astro';
 import Button from '../components/Button.astro';
 ---
 
-<Layout 
+<Layout
   title="Proyectos de Desarrollo Web | Portafolio de Trabajos"
   description="Explora mi portafolio de proyectos web: landing pages, sitios de restaurantes, catálogos digitales, formularios y rediseños CSS. Ver demos y código."
 >
-
-  <div class="min-h-screen py-12">
-    <Section 
-      title="Mis Proyectos"
-      subtitle="Una muestra de mi trabajo y experiencia en desarrollo web"
-      container={false}
-    >
-      <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Landing Básica -->
-          <Card
-            title="Landing Básica"
-            bullets={[
-              "Diseño responsive",
-              "SEO optimizado",
-              "Formulario de contacto"
-            ]}
-            cta={{
-              text: "Ver Demo",
-              href: "#"
-            }}
-          >
-            <div class="h-48 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-4">
-              <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            <p class="text-gray-400 mb-4">
-              Landing page básica con diseño moderno y funcionalidades esenciales.
-            </p>
-            <div class="flex gap-2">
-              <Button href="#" variant="primary" class="flex-1">
-                Ver Demo
-              </Button>
-              <Button href="#" variant="ghost" class="flex-1">
-                Ver Código
-              </Button>
-            </div>
-          </Card>
-
-          <!-- Restaurante "La Nave del Sabor" -->
-          <Card
-            title="La Nave del Sabor"
-            bullets={[
-              "Menú digital",
-              "Reservas online",
-              "Galería de fotos"
-            ]}
-            cta={{
-              text: "Ver Demo",
-              href: "#"
-            }}
-          >
-            <div class="h-48 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-4">
-              <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-              </svg>
-            </div>
-            <p class="text-gray-400 mb-4">
-              Sitio web completo para restaurante con menú digital y sistema de reservas.
-            </p>
-            <div class="flex gap-2">
-              <Button href="#" variant="primary" class="flex-1">
-                Ver Demo
-              </Button>
-              <Button href="#" variant="ghost" class="flex-1">
-                Ver Código
-              </Button>
-            </div>
-          </Card>
-
-          <!-- Servicio Técnico "TecnoFix" -->
-          <Card
-            title="TecnoFix"
-            bullets={[
-              "Solicitud de servicios",
-              "Calendario de citas",
-              "Seguimiento de tickets"
-            ]}
-            cta={{
-              text: "Ver Demo",
-              href: "#"
-            }}
-          >
-            <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mb-4">
-              <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-            </div>
-            <p class="text-gray-400 mb-4">
-              Plataforma para servicio técnico con gestión de citas y seguimiento de tickets.
-            </p>
-            <div class="flex gap-2">
-              <Button href="#" variant="primary" class="flex-1">
-                Ver Demo
-              </Button>
-              <Button href="#" variant="ghost" class="flex-1">
-                Ver Código
-              </Button>
-            </div>
-          </Card>
-
-          <!-- Catálogo "ModaRápida" -->
-          <Card
-            title="ModaRápida"
-            bullets={[
-              "Filtros avanzados",
-              "Vista de productos",
-              "Carrito de compras"
-            ]}
-            cta={{
-              text: "Ver Demo",
-              href: "#"
-            }}
-          >
-            <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center mb-4">
-              <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-              </svg>
-            </div>
-            <p class="text-gray-400 mb-4">
-              Catálogo digital de moda con filtros y sistema de carrito de compras.
-            </p>
-            <div class="flex gap-2">
-              <Button href="#" variant="primary" class="flex-1">
-                Ver Demo
-              </Button>
-              <Button href="#" variant="ghost" class="flex-1">
-                Ver Código
-              </Button>
-            </div>
-          </Card>
-
-          <!-- Formularios a Sheets -->
-          <Card
-            title="Formularios a Sheets"
-            bullets={[
-              "Integración GAS",
-              "Validación completa",
-              "Notificaciones email"
-            ]}
-            cta={{
-              text: "Ver Demo",
-              href: "#"
-            }}
-          >
-            <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-4">
-              <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            <p class="text-gray-400 mb-4">
-              Sistema de formularios conectado a Google Sheets con validación y notificaciones.
-            </p>
-            <div class="flex gap-2">
-              <Button href="#" variant="primary" class="flex-1">
-                Ver Demo
-              </Button>
-              <Button href="#" variant="ghost" class="flex-1">
-                Ver Código
-              </Button>
-            </div>
-          </Card>
-
-          <!-- Rediseño CSS Antes/Después -->
-          <Card
-            title="Rediseño CSS Antes/Después"
-            bullets={[
-              "Comparación visual",
-              "Mejoras responsive",
-              "Optimización UX"
-            ]}
-            cta={{
-              text: "Ver Demo",
-              href: "#"
-            }}
-          >
-            <div class="h-48 bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center mb-4">
-              <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4M15 7l3-3m0 0h-3m3 0v3"></path>
-              </svg>
-            </div>
-            <p class="text-gray-400 mb-4">
-              Proyecto de rediseño CSS mostrando la comparación antes y después de las mejoras.
-            </p>
-            <div class="flex gap-2">
-              <Button href="#" variant="primary" class="flex-1">
-                Ver Demo
-              </Button>
-              <Button href="#" variant="ghost" class="flex-1">
-                Ver Código
-              </Button>
-            </div>
-          </Card>
+  <Section 
+    title="Mis Proyectos"
+    subtitle="Una muestra de mi trabajo en desarrollo web y diseño digital"
+  >
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Proyecto 1: Landing Básica -->
+      <Card
+        title="Landing Básica"
+        bullets={[
+          "Diseño moderno y responsive",
+          "Optimización SEO completa",
+          "Formularios funcionales"
+        ]}
+      >
+        <p class="text-gray-300 mb-4">
+          Landing page profesional con secciones Hero, Beneficios, Servicios, 
+          Testimonios, FAQ y formulario de contacto. Diseño moderno y funcional.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <Button href="/demos/landing-basica" variant="primary">
+            Ver demo
+          </Button>
+          <Button href="#" variant="ghost">
+            Ver código
+          </Button>
         </div>
+      </Card>
 
-        <Section 
-          title="¿Te gusta lo que ves?"
-          subtitle="Si quieres un proyecto similar o tienes una idea en mente, no dudes en contactarme para discutir los detalles."
-          container={false}
-          class="mt-16"
-        >
-          <div class="text-center">
-            <div class="flex gap-4 justify-center">
-              <Button href="/servicios" size="lg">
-                Ver Servicios
-              </Button>
-              <Button href="/contacto" variant="ghost" size="lg">
-                Contactar
-              </Button>
-            </div>
-          </div>
-        </Section>
-      </div>
-    </Section>
-  </div>
+      <!-- Proyecto 2: Restaurante La Nave del Sabor -->
+      <Card
+        title="La Nave del Sabor"
+        bullets={[
+          "Menú digital interactivo",
+          "Sistema de reservas online",
+          "Galería de platos"
+        ]}
+      >
+        <p class="text-gray-300 mb-4">
+          Sitio web completo para restaurante con menú digital, sistema de 
+          reservas, galería de platos y información de contacto.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <Button href="/demos/restaurante" variant="primary">
+            Ver demo
+          </Button>
+          <Button href="#" variant="ghost">
+            Ver código
+          </Button>
+        </div>
+      </Card>
+
+      <!-- Proyecto 3: Servicio Técnico TecnoFix -->
+      <Card
+        title="TecnoFix - Servicio Técnico"
+        bullets={[
+          "Catálogo de servicios",
+          "Formulario de contacto",
+          "Mapa de ubicación"
+        ]}
+      >
+        <p class="text-gray-300 mb-4">
+          Sitio web para servicio técnico con catálogo de servicios, 
+          formulario de contacto y mapa de ubicación integrado.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <Button href="#" variant="primary">
+            Ver demo
+          </Button>
+          <Button href="#" variant="ghost">
+            Ver código
+          </Button>
+        </div>
+      </Card>
+
+      <!-- Proyecto 4: Catálogo ModaRápida -->
+      <Card
+        title="ModaRápida - Catálogo"
+        bullets={[
+          "Filtros de productos",
+          "Lightbox de imágenes",
+          "Formulario a Sheets"
+        ]}
+      >
+        <p class="text-gray-300 mb-4">
+          Catálogo digital con filtros de productos, lightbox de imágenes 
+          y formulario conectado a Google Sheets.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <Button href="#" variant="primary">
+            Ver demo
+          </Button>
+          <Button href="#" variant="ghost">
+            Ver código
+          </Button>
+        </div>
+      </Card>
+
+      <!-- Proyecto 5: Formularios a Sheets -->
+      <Card
+        title="Formularios Conectados"
+        bullets={[
+          "Integración GAS/EmailJS",
+          "Validación en tiempo real",
+          "Notificaciones automáticas"
+        ]}
+      >
+        <p class="text-gray-300 mb-4">
+          Sistema de formularios conectados a Google Apps Script y EmailJS 
+          con validación y notificaciones automáticas.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <Button href="/demos/forms" variant="primary">
+            Ver demo
+          </Button>
+          <Button href="#" variant="ghost">
+            Ver código
+          </Button>
+        </div>
+      </Card>
+
+      <!-- Proyecto 6: Rediseño CSS -->
+      <Card
+        title="Rediseño CSS - Antes/Después"
+        bullets={[
+          "Auditoría de diseño",
+          "Nueva paleta de colores",
+          "Mejoras de UX/UI"
+        ]}
+      >
+        <p class="text-gray-300 mb-4">
+          Rediseño completo de CSS con auditoría de diseño, nueva paleta 
+          de colores y mejoras significativas de UX/UI.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <Button href="#" variant="primary">
+            Ver demo
+          </Button>
+          <Button href="#" variant="ghost">
+            Ver código
+          </Button>
+        </div>
+      </Card>
+    </div>
+  </Section>
 </Layout>

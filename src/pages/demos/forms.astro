@@ -1,0 +1,606 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const WEB_APP_URL = import.meta.env.PUBLIC_WEB_APP_URL;
+---
+
+<Layout 
+  title="Formularios Demo | Validación y Estados"
+  description="Demo de formularios con validación nativa, estados de carga y accesibilidad. Formularios de reserva y pedido con envío a Google Apps Script."
+>
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-800 to-indigo-900 relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
+      <div class="animate-fade-in">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+          Demo de <span class="text-blue-400">Formularios</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+          Formularios interactivos con validación nativa, estados de carga y accesibilidad completa. 
+          Ejemplos de reserva y pedido con envío a Google Apps Script.
+        </p>
+        <a href="#formularios" class="px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+          Ver Formularios
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formularios Section -->
+  <section id="formularios" class="py-20 bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          Formularios Interactivos
+        </h2>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+          Ejemplos de formularios con validación nativa, estados de carga y envío a Google Apps Script
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Formulario de Reserva -->
+        <div class="bg-gray-800 rounded-lg p-8 border border-gray-700">
+          <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Reserva</h3>
+            <p class="text-gray-400">Reserva tu mesa en nuestro restaurante</p>
+          </div>
+
+          <form id="reservaForm" data-endpoint={WEB_APP_URL} class="space-y-6">
+            <!-- Nombre -->
+            <div>
+              <label for="reserva-nombre" class="block text-sm font-medium text-gray-300 mb-2">
+                Nombre completo <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="reserva-nombre"
+                name="nombre"
+                required
+                minlength="2"
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                placeholder="Tu nombre completo"
+                aria-describedby="reserva-nombre-error"
+              />
+              <div id="reserva-nombre-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="reserva-email" class="block text-sm font-medium text-gray-300 mb-2">
+                Correo electrónico <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="reserva-email"
+                name="email"
+                required
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                placeholder="tu@email.com"
+                aria-describedby="reserva-email-error"
+              />
+              <div id="reserva-email-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+            </div>
+
+            <!-- Fecha y Hora -->
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="reserva-fecha" class="block text-sm font-medium text-gray-300 mb-2">
+                  Fecha <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="reserva-fecha"
+                  name="fecha"
+                  required
+                  min={new Date().toISOString().split('T')[0]}
+                  class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  aria-describedby="reserva-fecha-error"
+                />
+                <div id="reserva-fecha-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+              </div>
+
+              <div>
+                <label for="reserva-hora" class="block text-sm font-medium text-gray-300 mb-2">
+                  Hora <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="reserva-hora"
+                  name="hora"
+                  required
+                  class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  aria-describedby="reserva-hora-error"
+                >
+                  <option value="">Selecciona una hora</option>
+                  <option value="12:00">12:00</option>
+                  <option value="12:30">12:30</option>
+                  <option value="13:00">13:00</option>
+                  <option value="13:30">13:30</option>
+                  <option value="14:00">14:00</option>
+                  <option value="19:00">19:00</option>
+                  <option value="19:30">19:30</option>
+                  <option value="20:00">20:00</option>
+                  <option value="20:30">20:30</option>
+                  <option value="21:00">21:00</option>
+                  <option value="21:30">21:30</option>
+                </select>
+                <div id="reserva-hora-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+              </div>
+            </div>
+
+            <!-- Número de Personas -->
+            <div>
+              <label for="reserva-personas" class="block text-sm font-medium text-gray-300 mb-2">
+                Número de personas <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="reserva-personas"
+                name="personas"
+                required
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                aria-describedby="reserva-personas-error"
+              >
+                <option value="">Selecciona el número</option>
+                <option value="1">1 persona</option>
+                <option value="2">2 personas</option>
+                <option value="3">3 personas</option>
+                <option value="4">4 personas</option>
+                <option value="5">5 personas</option>
+                <option value="6">6 personas</option>
+                <option value="7+">7+ personas</option>
+              </select>
+              <div id="reserva-personas-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+            </div>
+
+            <!-- Comentario -->
+            <div>
+              <label for="reserva-comentario" class="block text-sm font-medium text-gray-300 mb-2">
+                Comentario adicional
+              </label>
+              <textarea
+                id="reserva-comentario"
+                name="comentario"
+                rows="3"
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
+                placeholder="Alergias, preferencias especiales, ocasión especial..."
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              id="reserva-submit"
+              type="submit"
+              class="w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span id="reserva-submit-text">Reservar Mesa</span>
+              <span id="reserva-submit-loading" class="hidden">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Procesando...
+              </span>
+            </button>
+
+            <!-- Status Message -->
+            <div id="reserva-status" class="text-center text-sm" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <!-- Formulario de Pedido -->
+        <div class="bg-gray-800 rounded-lg p-8 border border-gray-700">
+          <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Pedido</h3>
+            <p class="text-gray-400">Realiza tu pedido online</p>
+          </div>
+
+          <form id="pedidoForm" data-endpoint={WEB_APP_URL} class="space-y-6">
+            <!-- Nombre -->
+            <div>
+              <label for="pedido-nombre" class="block text-sm font-medium text-gray-300 mb-2">
+                Nombre completo <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="pedido-nombre"
+                name="nombre"
+                required
+                minlength="2"
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
+                placeholder="Tu nombre completo"
+                aria-describedby="pedido-nombre-error"
+              />
+              <div id="pedido-nombre-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="pedido-email" class="block text-sm font-medium text-gray-300 mb-2">
+                Correo electrónico <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="pedido-email"
+                name="email"
+                required
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
+                placeholder="tu@email.com"
+                aria-describedby="pedido-email-error"
+              />
+              <div id="pedido-email-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+            </div>
+
+            <!-- Producto -->
+            <div>
+              <label for="pedido-producto" class="block text-sm font-medium text-gray-300 mb-2">
+                Producto <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="pedido-producto"
+                name="producto"
+                required
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
+                aria-describedby="pedido-producto-error"
+              >
+                <option value="">Selecciona un producto</option>
+                <option value="ensalada-cesar">Ensalada César - €8.50</option>
+                <option value="filete-res">Filete de Res - €24.50</option>
+                <option value="pasta-carbonara">Pasta Carbonara - €16.00</option>
+                <option value="salmon-plancha">Salmón a la Plancha - €22.00</option>
+                <option value="tiramisu">Tiramisú - €8.50</option>
+                <option value="vino-tinto">Vino Tinto - €8.00</option>
+                <option value="cerveza-artesanal">Cerveza Artesanal - €6.50</option>
+              </select>
+              <div id="pedido-producto-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+            </div>
+
+            <!-- Cantidad -->
+            <div>
+              <label for="pedido-cantidad" class="block text-sm font-medium text-gray-300 mb-2">
+                Cantidad <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="number"
+                id="pedido-cantidad"
+                name="cantidad"
+                required
+                min="1"
+                max="10"
+                value="1"
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
+                aria-describedby="pedido-cantidad-error"
+              />
+              <div id="pedido-cantidad-error" class="hidden text-red-500 text-sm mt-1" role="alert"></div>
+            </div>
+
+            <!-- Comentario -->
+            <div>
+              <label for="pedido-comentario" class="block text-sm font-medium text-gray-300 mb-2">
+                Comentario adicional
+              </label>
+              <textarea
+                id="pedido-comentario"
+                name="comentario"
+                rows="3"
+                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors resize-vertical"
+                placeholder="Instrucciones especiales, alergias, preferencias..."
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              id="pedido-submit"
+              type="submit"
+              class="w-full px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span id="pedido-submit-text">Realizar Pedido</span>
+              <span id="pedido-submit-loading" class="hidden">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Procesando...
+              </span>
+            </button>
+
+            <!-- Status Message -->
+            <div id="pedido-status" class="text-center text-sm" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Información Adicional -->
+      <div class="mt-16 text-center">
+        <div class="bg-gray-800 rounded-lg p-8 border border-gray-700 max-w-4xl mx-auto">
+          <h3 class="text-2xl font-bold text-white mb-4">Características del Demo</h3>
+          <div class="grid md:grid-cols-3 gap-6 text-left">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2">Validación Nativa</h4>
+              <p class="text-gray-400 text-sm">HTML5 validation con mensajes personalizados y accesibilidad</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2">Estados Dinámicos</h4>
+              <p class="text-gray-400 text-sm">Loading, success y error states con feedback visual</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-white mb-2">Envío Seguro</h4>
+              <p class="text-gray-400 text-sm">Integración con Google Apps Script para procesamiento</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Configuración de formularios
+    const forms = {
+      reserva: {
+        form: document.getElementById('reservaForm'),
+        submitBtn: document.getElementById('reserva-submit'),
+        submitText: document.getElementById('reserva-submit-text'),
+        submitLoading: document.getElementById('reserva-submit-loading'),
+        status: document.getElementById('reserva-status'),
+        type: 'reserva'
+      },
+      pedido: {
+        form: document.getElementById('pedidoForm'),
+        submitBtn: document.getElementById('pedido-submit'),
+        submitText: document.getElementById('pedido-submit-text'),
+        submitLoading: document.getElementById('pedido-submit-loading'),
+        status: document.getElementById('pedido-status'),
+        type: 'pedido'
+      }
+    };
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+      Object.values(forms).forEach(setupForm);
+    });
+
+    // Configurar formulario
+    function setupForm(config) {
+      const { form, submitBtn, submitText, submitLoading, status, type } = config;
+      
+      // Obtener endpoint del data attribute
+      const WEB_APP_URL = form.dataset.endpoint;
+      
+      // Estado del formulario
+      let formState = 'idle'; // idle, loading, success, error
+
+      // Configurar validación en tiempo real
+      const inputs = form.querySelectorAll('input, select, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('input', () => validateForm(form, type));
+        input.addEventListener('blur', () => validateForm(form, type));
+      });
+
+      // Configurar envío del formulario
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        if (formState === 'loading') return;
+        
+        // Validar formulario
+        if (!validateForm(form, type)) {
+          showStatus(status, 'Por favor, corrige los errores en el formulario.', 'error');
+          return;
+        }
+
+        // Cambiar a estado loading
+        setFormState('loading', config);
+        
+        // Obtener datos del formulario
+        const formData = new FormData(form);
+        const data = {
+          tipo: type,
+          ...Object.fromEntries(formData.entries())
+        };
+
+        try {
+          // Enviar datos
+          await fetch(WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(data)
+          });
+
+          // Éxito
+          setFormState('success', config);
+          showStatus(status, `${type === 'reserva' ? '¡Reserva enviada con éxito!' : '¡Pedido enviado con éxito!'} Te contactaremos pronto.`, 'success');
+          form.reset();
+          
+          // Resetear estado después de 3 segundos
+          setTimeout(() => {
+            setFormState('idle', config);
+            clearStatus(status);
+          }, 3000);
+
+        } catch (error) {
+          // Error
+          setFormState('error', config);
+          showStatus(status, 'Error al enviar el formulario. Por favor, inténtalo de nuevo.', 'error');
+          
+          // Resetear estado después de 3 segundos
+          setTimeout(() => {
+            setFormState('idle', config);
+            clearStatus(status);
+          }, 3000);
+        }
+      });
+    }
+
+    // Validar formulario
+    function validateForm(form, type) {
+      const inputs = form.querySelectorAll('input[required], select[required]');
+      let isValid = true;
+
+      inputs.forEach(input => {
+        const errorElement = document.getElementById(`${type}-${input.name}-error`);
+        
+        // Limpiar error previo
+        if (errorElement) {
+          errorElement.classList.add('hidden');
+          errorElement.textContent = '';
+        }
+
+        // Validar campo
+        if (!input.checkValidity()) {
+          isValid = false;
+          
+          if (errorElement) {
+            errorElement.classList.remove('hidden');
+            errorElement.textContent = getErrorMessage(input, type);
+          }
+        }
+      });
+
+      return isValid;
+    }
+
+    // Obtener mensaje de error personalizado
+    function getErrorMessage(input, type) {
+      const fieldName = input.name;
+      
+      if (input.validity.valueMissing) {
+        const labels = {
+          nombre: 'El nombre es obligatorio',
+          email: 'El email es obligatorio',
+          fecha: 'La fecha es obligatoria',
+          hora: 'La hora es obligatoria',
+          personas: 'El número de personas es obligatorio',
+          producto: 'El producto es obligatorio',
+          cantidad: 'La cantidad es obligatoria'
+        };
+        return labels[fieldName] || 'Este campo es obligatorio';
+      }
+      
+      if (input.validity.typeMismatch && input.type === 'email') {
+        return 'Por favor, introduce un email válido';
+      }
+      
+      if (input.validity.tooShort) {
+        return 'El nombre debe tener al menos 2 caracteres';
+      }
+      
+      if (input.validity.rangeUnderflow && input.type === 'number') {
+        return 'La cantidad mínima es 1';
+      }
+      
+      if (input.validity.rangeOverflow && input.type === 'number') {
+        return 'La cantidad máxima es 10';
+      }
+      
+      return input.validationMessage;
+    }
+
+    // Cambiar estado del formulario
+    function setFormState(state, config) {
+      const { submitBtn, submitText, submitLoading } = config;
+      
+      switch (state) {
+        case 'idle':
+          submitText.classList.remove('hidden');
+          submitLoading.classList.add('hidden');
+          submitBtn.disabled = false;
+          break;
+        case 'loading':
+          submitText.classList.add('hidden');
+          submitLoading.classList.remove('hidden');
+          submitBtn.disabled = true;
+          break;
+        case 'success':
+          submitText.textContent = '¡Enviado!';
+          submitText.classList.remove('hidden');
+          submitLoading.classList.add('hidden');
+          submitBtn.disabled = true;
+          break;
+        case 'error':
+          submitText.textContent = 'Error - Reintentar';
+          submitText.classList.remove('hidden');
+          submitLoading.classList.add('hidden');
+          submitBtn.disabled = false;
+          break;
+      }
+    }
+
+    // Mostrar mensaje de estado
+    function showStatus(statusElement, message, type) {
+      statusElement.textContent = message;
+      statusElement.className = `text-center text-sm ${type === 'success' ? 'text-green-400' : 'text-red-400'}`;
+      statusElement.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    }
+
+    // Limpiar mensaje de estado
+    function clearStatus(statusElement) {
+      statusElement.textContent = '';
+      statusElement.className = 'text-center text-sm';
+      statusElement.removeAttribute('role');
+    }
+
+    // CSS para animaciones
+    const style = document.createElement('style');
+    style.textContent = `
+      .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      input:invalid:not(:placeholder-shown),
+      select:invalid:not(:placeholder-shown) {
+        border-color: rgb(239 68 68);
+      }
+      
+      input:valid:not(:placeholder-shown),
+      select:valid:not(:placeholder-shown) {
+        border-color: rgb(34 197 94);
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</Layout>
+
+
+
+
+
