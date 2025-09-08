@@ -59,3 +59,4 @@ El código incluye un `onerror` handler que:
 3. Mantiene el diseño intacto en cualquier situación
 
 ¡Tu portfolio ya está listo para mostrar tu imagen profesional! 🎉
+

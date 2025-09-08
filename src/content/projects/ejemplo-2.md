@@ -89,3 +89,4 @@ Sistema de gestión de inventario desarrollado para una empresa de retail que ne
 - **ROI del 300%** en el primer año
 
 Este proyecto demuestra mi experiencia en aplicaciones empresariales complejas y mi capacidad para crear soluciones que realmente impactan el negocio.
+

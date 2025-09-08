@@ -77,3 +77,4 @@ Este proyecto es una plataforma de comercio electrónico completa que demuestra 
 - **Satisfacción del cliente**: 4.8/5 estrellas
 
 Este proyecto demuestra mi capacidad para crear aplicaciones web complejas, escalables y centradas en el usuario.
+

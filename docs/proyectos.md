@@ -288,3 +288,4 @@ npm run preview
 ---
 
 **Nota**: Este sistema está diseñado para ser extensible y fácil de mantener. Si necesitas funcionalidades adicionales, consulta la documentación de Astro Content Collections.
+
