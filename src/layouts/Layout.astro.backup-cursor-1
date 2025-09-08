@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import '../styles/base.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -10,18 +9,16 @@ export interface Props {
   description?: string;
   image?: string;
   canonical?: string;
-  theme?: string;
 }
 
 const { 
   title = "Desarrollador Web Freelance | Portafolio",
   description = "Desarrollador web freelance especializado en sitios web modernos, landing pages y aplicaciones web. Servicios de desarrollo frontend, responsive design y optimización SEO.",
   image = "/og-image.jpg",
-  canonical = Astro.url.href,
-  theme = "default"
+  canonical = Astro.url.href
 } = Astro.props;
 ---
-<html lang="es" data-theme={theme}>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -76,9 +73,4 @@ const {
     </main>
     <Footer />
   </body>
-  <script>
-    import { enableButtonRipple, revealOnScroll, applyStagger } from '../scripts/motion.js';
-    import { enableTilt } from '../scripts/tilt.js';
-    enableButtonRipple(); revealOnScroll(); applyStagger(); enableTilt();
-  </script>
 </html>

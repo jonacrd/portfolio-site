@@ -1,0 +1,18 @@
+---
+const { title, desc, tech = [], ctaHref = "#", badge = "" } = Astro.props;
+---
+<article class="card reveal" data-tilt>
+  <header style="display:flex;align-items:center;gap:12px;">
+    <div style="width:42px;height:42px;border-radius:12px;background:var(--grad);box-shadow:var(--shadow-glow)"></div>
+    <h3 style="margin:0">{title}</h3>
+    {badge && <span class="badge">{badge}</span>}
+  </header>
+  <p style="color:var(--muted);margin:.6rem 0 1rem">{desc}</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    {tech.map(t => <span class="pill">{t}</span>)}
+  </div>
+  <footer style="margin-top:1rem;display:flex;gap:.6rem">
+    <a class="btn" href={ctaHref}>Ver Proyecto</a>
+    <a class="btn" style="background:transparent;color:var(--text);outline:1px solid rgba(255,255,255,.15)" href="/contacto">Solicitar Similar</a>
+  </footer>
+</article>

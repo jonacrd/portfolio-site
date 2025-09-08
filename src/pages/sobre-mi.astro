@@ -1,0 +1,531 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout 
+  title="Sobre Mí | Jonathan Guarirapa - Desarrollador Web"
+  description="Conoce más sobre Jonathan Guarirapa, desarrollador web profesional con más de 3 años de experiencia. Mi historia, habilidades, experiencia y pasión por el desarrollo web."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-nextsite-bg-darker via-nextsite-dark-blue to-nextsite-bg-dark"></div>
+    
+    <!-- Animated Elements -->
+    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-2xl animate-float opacity-20"></div>
+    <div class="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full blur-2xl animate-float opacity-15" style="animation-delay: 2s;"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-fade-in-left">
+          <h1 class="text-5xl md:text-6xl font-bold mb-6">
+            <span class="text-white">Sobre</span>
+            <br>
+            <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Mí
+            </span>
+          </h1>
+          <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+            Desarrollador web apasionado con más de 3 años de experiencia creando 
+            soluciones digitales que marcan la diferencia.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <Button href="/contacto" size="lg">
+              Trabajar Conmigo
+            </Button>
+            <Button href="/proyectos" variant="ghost" size="lg">
+              Ver Mis Trabajos
+            </Button>
+          </div>
+        </div>
+        
+        <div class="animate-fade-in-right">
+          <div class="relative">
+            <div class="w-80 h-80 mx-auto rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 p-1 animate-pulse-glow">
+              <div class="w-full h-full rounded-full overflow-hidden">
+                <img 
+                  src="/jonadevel.jpg" 
+                  alt="Jonathan Guarirapa - Desarrollador Web"
+                  class="w-full h-full object-cover"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="w-full h-full bg-nextsite-bg-dark flex items-center justify-center" style="display: none;">
+                  <span class="text-8xl font-bold text-white">JG</span>
+                </div>
+              </div>
+            </div>
+            <!-- Floating Elements -->
+            <div class="absolute top-10 -right-10 w-6 h-6 bg-nextsite-accent-blue rounded-full animate-float"></div>
+            <div class="absolute bottom-10 -left-10 w-4 h-4 bg-nextsite-light-blue rounded-full animate-float" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 -right-20 w-3 h-3 bg-white rounded-full animate-float" style="animation-delay: 2s;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Story Section -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-fade-in-left">
+          <h2 class="text-4xl font-bold text-white mb-6">
+            Mi <span class="text-nextsite-accent-blue">Historia</span>
+          </h2>
+          <div class="space-y-6 text-gray-300 leading-relaxed">
+            <p class="text-lg">
+              Mi pasión por el desarrollo web comenzó hace más de 3 años cuando descubrí 
+              el poder de transformar ideas en experiencias digitales interactivas. 
+              Desde entonces, he dedicado mi tiempo a perfeccionar mis habilidades y 
+              mantenerme actualizado con las últimas tecnologías.
+            </p>
+            <p class="text-lg">
+              Me especializo en desarrollo frontend moderno, creando interfaces de usuario 
+              que no solo se ven increíbles, sino que también ofrecen una experiencia 
+              excepcional. Mi enfoque se centra en escribir código limpio, escalable y 
+              mantenible.
+            </p>
+            <p class="text-lg">
+              Cuando no estoy programando, me gusta explorar nuevas tecnologías, 
+              contribuir a proyectos de código abierto y compartir mi conocimiento 
+              con la comunidad de desarrolladores.
+            </p>
+          </div>
+        </div>
+        
+        <div class="animate-fade-in-right">
+          <div class="glass rounded-3xl p-8">
+            <h3 class="text-2xl font-bold text-white mb-6">Mis Valores</h3>
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="text-white font-bold">🎯</span>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold mb-2">Calidad</h4>
+                  <p class="text-gray-400 text-sm">Cada proyecto recibe la máxima atención al detalle y calidad.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="text-white font-bold">⚡</span>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold mb-2">Eficiencia</h4>
+                  <p class="text-gray-400 text-sm">Optimizo cada proceso para entregar resultados rápidos y efectivos.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="text-white font-bold">🤝</span>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold mb-2">Colaboración</h4>
+                  <p class="text-gray-400 text-sm">Trabajo estrechamente con mis clientes para lograr sus objetivos.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span class="text-white font-bold">🚀</span>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold mb-2">Innovación</h4>
+                  <p class="text-gray-400 text-sm">Siempre busco las mejores soluciones y tecnologías más modernas.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">
+          Mis <span class="text-nextsite-accent-blue">Habilidades</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Tecnologías y herramientas que domino para crear soluciones web excepcionales
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Frontend Skills -->
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 animate-fade-in-up">
+          <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-3xl">🎨</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Frontend</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">React</span>
+              <span class="text-nextsite-accent-blue font-semibold">95%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 95%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">Vue.js</span>
+              <span class="text-nextsite-accent-blue font-semibold">90%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 90%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">TypeScript</span>
+              <span class="text-nextsite-accent-blue font-semibold">85%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">CSS/Tailwind</span>
+              <span class="text-nextsite-accent-blue font-semibold">95%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 95%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Backend Skills -->
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-3xl">⚙️</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Backend</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">Node.js</span>
+              <span class="text-nextsite-accent-blue font-semibold">85%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full" style="width: 85%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">Express</span>
+              <span class="text-nextsite-accent-blue font-semibold">80%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full" style="width: 80%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">PHP</span>
+              <span class="text-nextsite-accent-blue font-semibold">75%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full" style="width: 75%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">Python</span>
+              <span class="text-nextsite-accent-blue font-semibold">70%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full" style="width: 70%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tools & Others -->
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-3xl">🛠️</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Herramientas</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">Git/GitHub</span>
+              <span class="text-nextsite-accent-blue font-semibold">90%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 90%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">Docker</span>
+              <span class="text-nextsite-accent-blue font-semibold">75%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 75%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">AWS/Vercel</span>
+              <span class="text-nextsite-accent-blue font-semibold">80%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 80%"></div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-300">Figma</span>
+              <span class="text-nextsite-accent-blue font-semibold">85%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">
+          Mi <span class="text-nextsite-accent-blue">Experiencia</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Un recorrido por mi trayectoria profesional y los proyectos más destacados
+        </p>
+      </div>
+      
+      <div class="relative">
+        <!-- Timeline Line -->
+        <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 to-blue-500"></div>
+        
+        <div class="space-y-12">
+          <!-- Experience 1 -->
+          <div class="relative flex items-start gap-8 animate-fade-in-up">
+            <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 relative z-10">
+              <span class="text-white font-bold">2024</span>
+            </div>
+            <div class="glass rounded-2xl p-6 flex-1">
+              <h3 class="text-2xl font-bold text-white mb-2">Desarrollador Web Freelance</h3>
+              <p class="text-nextsite-accent-blue font-semibold mb-4">2024 - Presente</p>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Trabajo como desarrollador freelance, creando soluciones web personalizadas 
+                para clientes de diversos sectores. Especializado en desarrollo frontend 
+                moderno y optimización de rendimiento.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">React</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">Vue.js</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">Astro</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">Tailwind CSS</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Experience 2 -->
+          <div class="relative flex items-start gap-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full flex items-center justify-center flex-shrink-0 relative z-10">
+              <span class="text-white font-bold">2023</span>
+            </div>
+            <div class="glass rounded-2xl p-6 flex-1">
+              <h3 class="text-2xl font-bold text-white mb-2">Desarrollador Frontend</h3>
+              <p class="text-nextsite-accent-blue font-semibold mb-4">2023 - 2024</p>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Desarrollé interfaces de usuario para aplicaciones web complejas, 
+                trabajando en equipo con diseñadores y desarrolladores backend. 
+                Mejoré significativamente la experiencia de usuario y el rendimiento.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">React</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">TypeScript</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">Next.js</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">GraphQL</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Experience 3 -->
+          <div class="relative flex items-start gap-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 relative z-10">
+              <span class="text-white font-bold">2022</span>
+            </div>
+            <div class="glass rounded-2xl p-6 flex-1">
+              <h3 class="text-2xl font-bold text-white mb-2">Desarrollador Junior</h3>
+              <p class="text-nextsite-accent-blue font-semibold mb-4">2022 - 2023</p>
+              <p class="text-gray-300 mb-4 leading-relaxed">
+                Comencé mi carrera profesional desarrollando sitios web estáticos y 
+                aplicaciones web simples. Aprendí las mejores prácticas de desarrollo 
+                y me especialicé en tecnologías frontend modernas.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">HTML5</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">CSS3</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">JavaScript</span>
+                <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-sm">Bootstrap</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Certifications -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">
+          <span class="text-nextsite-accent-blue">Educación</span> y Certificaciones
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Mi formación académica y certificaciones profesionales
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Education -->
+        <div class="glass rounded-2xl p-8 animate-fade-in-up">
+          <h3 class="text-2xl font-bold text-white mb-6">Educación</h3>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-bold">🎓</span>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Ingeniería en Sistemas</h4>
+                <p class="text-nextsite-accent-blue text-sm mb-1">Universidad Tecnológica</p>
+                <p class="text-gray-400 text-sm">2020 - 2024</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-bold">💻</span>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Bootcamp Desarrollo Web</h4>
+                <p class="text-nextsite-accent-blue text-sm mb-1">Platzi</p>
+                <p class="text-gray-400 text-sm">2022</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Certifications -->
+        <div class="glass rounded-2xl p-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+          <h3 class="text-2xl font-bold text-white mb-6">Certificaciones</h3>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-bold">⚛️</span>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">React Developer</h4>
+                <p class="text-nextsite-accent-blue text-sm mb-1">Meta</p>
+                <p class="text-gray-400 text-sm">2023</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-bold">☁️</span>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">AWS Cloud Practitioner</h4>
+                <p class="text-nextsite-accent-blue text-sm mb-1">Amazon Web Services</p>
+                <p class="text-gray-400 text-sm">2023</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-bold">🎨</span>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">UI/UX Design</h4>
+                <p class="text-nextsite-accent-blue text-sm mb-1">Google</p>
+                <p class="text-gray-400 text-sm">2022</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fun Facts -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">
+          Datos <span class="text-nextsite-accent-blue">Curiosos</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Algunos datos interesantes sobre mí y mi trabajo
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center animate-fade-in-up">
+          <div class="w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">☕</span>
+          </div>
+          <div class="text-3xl font-bold text-nextsite-accent-blue mb-2">500+</div>
+          <div class="text-gray-400">Tazas de café</div>
+        </div>
+        
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">💻</span>
+          </div>
+          <div class="text-3xl font-bold text-nextsite-accent-blue mb-2">50+</div>
+          <div class="text-gray-400">Proyectos completados</div>
+        </div>
+        
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">🌙</span>
+          </div>
+          <div class="text-3xl font-bold text-nextsite-accent-blue mb-2">2AM</div>
+          <div class="text-gray-400">Hora de mayor productividad</div>
+        </div>
+        
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">🎵</span>
+          </div>
+          <div class="text-3xl font-bold text-nextsite-accent-blue mb-2">24/7</div>
+          <div class="text-gray-400">Música mientras programo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="animate-fade-in-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          ¿Listo para <span class="text-nextsite-accent-blue">Trabajar</span> Juntos?
+        </h2>
+        <p class="text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+          Me encantaría conocer tu proyecto y ayudarte a hacerlo realidad
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+          <Button href="/contacto" size="lg" class="animate-pulse-glow">
+            <span class="flex items-center gap-2">
+              Iniciar Conversación
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+            </span>
+          </Button>
+          <Button href="/proyectos" variant="ghost" size="lg">
+            <span class="flex items-center gap-2">
+              Ver Mis Proyectos
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </span>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

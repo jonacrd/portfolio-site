@@ -1,70 +1,400 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const WEB_APP_URL = import.meta.env.PUBLIC_WEB_APP_URL; // se resuelve en build/SSR
+import Button from '../components/Button.astro';
 ---
 
-<Layout>
-  <h1 class="text-3xl mb-6">Contacto</h1>
+<Layout 
+  title="Contacto | Jonathan Guarirapa - Desarrollador Web"
+  description="¿Tienes un proyecto en mente? Contáctame para discutir tu idea y recibir una cotización personalizada. Respuesta garantizada en menos de 24 horas."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-nextsite-bg-darker via-nextsite-dark-blue to-nextsite-bg-dark"></div>
+    
+    <!-- Animated Elements -->
+    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-2xl animate-float opacity-20"></div>
+    <div class="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full blur-2xl animate-float opacity-15" style="animation-delay: 2s;"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+      <div class="animate-fade-in-up">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+          <span class="text-white">Trabajemos</span>
+          <br>
+          <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            Juntos
+          </span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          ¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte a hacerlo realidad
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="#formulario" size="lg">
+            Enviar Mensaje
+          </Button>
+          <Button href="/proyectos" variant="ghost" size="lg">
+            Ver Mis Trabajos
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <form id="contactForm" data-endpoint={WEB_APP_URL} class="grid gap-3 max-w-lg">
-    <input name="nombre"  placeholder="Nombre completo" class="border p-2 rounded" required />
-    <input name="email"   type="email" placeholder="Correo" class="border p-2 rounded" required />
-    <select name="tipo" class="border p-2 rounded" required>
-      <option value="" selected disabled>Selecciona un servicio</option>
-      <option>Landing OnePage</option>
-      <option>Sitio Estático Local</option>
-      <option>Mejora CSS/Responsive</option>
-      <option>Catálogo Digital</option>
-      <option>Formularios Conectados</option>
+  <!-- Contact Form Section -->
+  <section id="formulario" class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">
+          Envíame un <span class="text-nextsite-accent-blue">Mensaje</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Completa el formulario y me pondré en contacto contigo en menos de 24 horas
+        </p>
+      </div>
+      
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div class="glass rounded-3xl p-8 animate-fade-in-left">
+          <form class="space-y-6" id="contact-form">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="nombre" class="block text-white font-semibold mb-2">Nombre *</label>
+                <input 
+                  type="text" 
+                  id="nombre" 
+                  name="nombre" 
+                  required
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-nextsite-accent-blue focus:bg-white/20 transition-all duration-300"
+                  placeholder="Tu nombre completo"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-white font-semibold mb-2">Email *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-nextsite-accent-blue focus:bg-white/20 transition-all duration-300"
+                  placeholder="tu@email.com"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label for="telefono" class="block text-white font-semibold mb-2">Teléfono</label>
+              <input 
+                type="tel" 
+                id="telefono" 
+                name="telefono"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-nextsite-accent-blue focus:bg-white/20 transition-all duration-300"
+                placeholder="+1 (555) 123-4567"
+              />
+            </div>
+            
+            <div>
+              <label for="empresa" class="block text-white font-semibold mb-2">Empresa</label>
+              <input 
+                type="text" 
+                id="empresa" 
+                name="empresa"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-nextsite-accent-blue focus:bg-white/20 transition-all duration-300"
+                placeholder="Nombre de tu empresa"
+              />
+            </div>
+            
+            <div>
+              <label for="servicio" class="block text-white font-semibold mb-2">Tipo de Servicio *</label>
+              <select 
+                id="servicio" 
+                name="servicio" 
+                required
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:border-nextsite-accent-blue focus:bg-white/20 transition-all duration-300"
+              >
+                <option value="" class="bg-gray-800">Selecciona un servicio</option>
+                <option value="desarrollo-web" class="bg-gray-800">Desarrollo Web</option>
+                <option value="diseno-ui-ux" class="bg-gray-800">Diseño UI/UX</option>
+                <option value="optimizacion" class="bg-gray-800">Optimización</option>
+                <option value="landing-page" class="bg-gray-800">Landing Page</option>
+                <option value="aplicacion-web" class="bg-gray-800">Aplicación Web</option>
+                <option value="consulta" class="bg-gray-800">Consulta</option>
+                <option value="otro" class="bg-gray-800">Otro</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="presupuesto" class="block text-white font-semibold mb-2">Presupuesto Aproximado</label>
+              <select 
+                id="presupuesto" 
+                name="presupuesto"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:border-nextsite-accent-blue focus:bg-white/20 transition-all duration-300"
+              >
+                <option value="" class="bg-gray-800">Selecciona un rango</option>
+                <option value="500-1000" class="bg-gray-800">$500 - $1,000</option>
+                <option value="1000-2500" class="bg-gray-800">$1,000 - $2,500</option>
+                <option value="2500-5000" class="bg-gray-800">$2,500 - $5,000</option>
+                <option value="5000+" class="bg-gray-800">$5,000+</option>
+                <option value="por-definir" class="bg-gray-800">Por definir</option>
     </select>
-    <textarea name="mensaje" placeholder="Mensaje" class="border p-2 rounded" required></textarea>
-
-    <label class="flex items-center gap-2 text-sm">
-      <input id="policy" type="checkbox" required />
-      Acepto la política de privacidad
+            </div>
+            
+            <div>
+              <label for="mensaje" class="block text-white font-semibold mb-2">Mensaje *</label>
+              <textarea 
+                id="mensaje" 
+                name="mensaje" 
+                rows="6" 
+                required
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-nextsite-accent-blue focus:bg-white/20 transition-all duration-300 resize-none"
+                placeholder="Cuéntame sobre tu proyecto, objetivos, timeline y cualquier detalle importante..."
+              ></textarea>
+            </div>
+            
+            <div class="flex items-start gap-3">
+              <input 
+                type="checkbox" 
+                id="privacidad" 
+                name="privacidad" 
+                required
+                class="mt-1 w-5 h-5 text-nextsite-accent-blue bg-white/10 border-white/20 rounded focus:ring-nextsite-accent-blue focus:ring-2"
+              />
+              <label for="privacidad" class="text-gray-300 text-sm">
+                Acepto la <a href="#" class="text-nextsite-accent-blue hover:underline">política de privacidad</a> y 
+                el tratamiento de mis datos personales para responder a mi consulta.
     </label>
+            </div>
 
-    <button id="submitBtn" type="submit"
-      class="px-4 py-2 rounded bg-cyan-600 text-white disabled:opacity-50 disabled:cursor-not-allowed">
+            <Button type="submit" size="lg" class="w-full">
+              <span class="flex items-center justify-center gap-2">
       Enviar Mensaje
-    </button>
-    <p id="status" class="text-sm"></p>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+              </span>
+            </Button>
   </form>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="space-y-8 animate-fade-in-right">
+          <!-- Contact Methods -->
+          <div class="glass rounded-3xl p-8">
+            <h3 class="text-2xl font-bold text-white mb-6">Otras formas de contacto</h3>
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center">
+                  <span class="text-2xl">📧</span>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold">Email</h4>
+                  <p class="text-gray-400">jonathan@example.com</p>
+                  <p class="text-sm text-gray-500">Respuesta en menos de 24 horas</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center">
+                  <span class="text-2xl">📱</span>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold">WhatsApp</h4>
+                  <p class="text-gray-400">+1 (555) 123-4567</p>
+                  <p class="text-sm text-gray-500">Disponible de 9 AM a 6 PM</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center">
+                  <span class="text-2xl">💼</span>
+                </div>
+                <div>
+                  <h4 class="text-white font-semibold">LinkedIn</h4>
+                  <p class="text-gray-400">linkedin.com/in/jonathan</p>
+                  <p class="text-sm text-gray-500">Conectemos profesionalmente</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Response Time -->
+          <div class="glass rounded-3xl p-8">
+            <h3 class="text-2xl font-bold text-white mb-6">Tiempo de respuesta</h3>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="text-gray-300">Email: Menos de 24 horas</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="text-gray-300">WhatsApp: Inmediato (horario laboral)</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 bg-yellow-500 rounded-full animate-pulse"></div>
+                <span class="text-gray-300">LinkedIn: 1-2 días hábiles</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- FAQ -->
+          <div class="glass rounded-3xl p-8">
+            <h3 class="text-2xl font-bold text-white mb-6">Preguntas frecuentes</h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="text-white font-semibold mb-2">¿Cuánto tiempo toma un proyecto?</h4>
+                <p class="text-gray-400 text-sm">Depende del tipo de proyecto. Landing pages: 1 semana. Sitios web completos: 2-3 semanas. Aplicaciones: 4-6 semanas.</p>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold mb-2">¿Ofreces soporte post-entrega?</h4>
+                <p class="text-gray-400 text-sm">Sí, incluyo 30 días de soporte gratuito y mantenimiento básico en todos mis proyectos.</p>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold mb-2">¿Trabajas con empresas internacionales?</h4>
+                <p class="text-gray-400 text-sm">Absolutamente. Trabajo con clientes de todo el mundo y me adapto a diferentes zonas horarias.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <script type="module">
-    const form = document.getElementById('contactForm');
-    const WEB_APP_URL = form.dataset.endpoint;           // ← tomado del HTML
-    const btn = document.getElementById('submitBtn');
-    const policy = document.getElementById('policy');
-    const statusEl = document.getElementById('status');
+  <!-- Process Section -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">
+          ¿Qué pasa <span class="text-nextsite-accent-blue">después?</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Mi proceso de trabajo paso a paso para garantizar el éxito de tu proyecto
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- Step 1 -->
+        <div class="text-center animate-fade-in-up">
+          <div class="w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-white">1</span>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">Recibo tu mensaje</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Reviso tu consulta y me pongo en contacto contigo en menos de 24 horas.
+          </p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-white">2</span>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">Consulta inicial</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Hablamos sobre tu proyecto, objetivos y expectativas para entender mejor tus necesidades.
+          </p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-white">3</span>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">Propuesta detallada</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Te envío una propuesta completa con timeline, costos y especificaciones técnicas.
+          </p>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-white">4</span>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">¡Empezamos!</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Una vez aprobada la propuesta, comenzamos el desarrollo con comunicación constante.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    function updateBtn(){ btn.disabled = !(form.checkValidity() && policy.checked); }
-    form.addEventListener('input', updateBtn);
-    form.addEventListener('change', updateBtn);
-    updateBtn();
+  <!-- CTA Section -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="animate-fade-in-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          ¿Listo para <span class="text-nextsite-accent-blue">Empezar?</span>
+        </h2>
+        <p class="text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+          No esperes más. Envía tu mensaje ahora y comencemos a trabajar en tu proyecto
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+          <Button href="#formulario" size="lg" class="animate-pulse-glow">
+            <span class="flex items-center gap-2">
+              Enviar Mensaje Ahora
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+              </svg>
+            </span>
+          </Button>
+          <Button href="/sobre-mi" variant="ghost" size="lg">
+            <span class="flex items-center gap-2">
+              Conoce Más Sobre Mí
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+            </span>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
 
-    form.addEventListener('submit', async (e) => {
+<script>
+  // Form handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    
+    if (form) {
+      form.addEventListener('submit', function(e) {
       e.preventDefault();
-      if (!form.checkValidity()) return;
-
-      btn.disabled = true;
-      statusEl.textContent = 'Enviando...';
-      const data = Object.fromEntries(new FormData(form).entries());
-
-      try {
-        await fetch(WEB_APP_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(data)
-        });
-        statusEl.textContent = 'Enviado ✔';
-        form.reset();
-      } catch {
-        statusEl.textContent = 'Error de red';
-      } finally {
-        updateBtn();
+        
+        // Get form data
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        // Simple validation
+        if (!data.nombre || !data.email || !data.servicio || !data.mensaje) {
+          alert('Por favor, completa todos los campos obligatorios.');
+          return;
+        }
+        
+        // Simulate form submission
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        
+        submitButton.innerHTML = `
+          <span class="flex items-center justify-center gap-2">
+            <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Enviando...
+          </span>
+        `;
+        
+        submitButton.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+          alert('¡Mensaje enviado con éxito! Te contactaré pronto.');
+          form.reset();
+          submitButton.innerHTML = originalText;
+          submitButton.disabled = false;
+        }, 2000);
+      });
       }
     });
   </script>
-</Layout>

@@ -1,0 +1,307 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CodeViewer from '../../components/CodeViewer.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+// Parse GitHub repo URL
+function parseGitHubUrl(repoUrl: string) {
+  const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+  if (match) {
+    return {
+      owner: match[1],
+      repo: match[2],
+      fullUrl: repoUrl
+    };
+  }
+  return null;
+}
+
+const githubInfo = project.data.repoUrl ? parseGitHubUrl(project.data.repoUrl) : null;
+---
+
+<Layout 
+  title={`${project.data.title} | Jonathan Guarirapa - Proyectos`}
+  description={project.data.summary}
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-nextsite-bg-darker via-nextsite-dark-blue to-nextsite-bg-dark"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+      <div class="animate-fade-in-up">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          <span class="text-white">{project.data.title}</span>
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          {project.data.summary}
+        </p>
+        
+        <!-- Stack -->
+        {project.data.stack && project.data.stack.length > 0 && (
+          <div class="flex flex-wrap gap-3 justify-center mb-8">
+            {project.data.stack.map(tech => (
+              <span class="pill">{tech}</span>
+            ))}
+          </div>
+        )}
+        
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          {project.data.demoUrl && (
+            <a href={project.data.demoUrl} target="_blank" rel="noopener noreferrer" class="btn">
+              <span class="flex items-center gap-2">
+                Ver Demo
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </span>
+            </a>
+          )}
+          {project.data.repoUrl && (
+            <a href={project.data.repoUrl} target="_blank" rel="noopener noreferrer" class="btn" style="background: transparent; color: var(--text); outline: 1px solid rgba(255,255,255,.15);">
+              <span class="flex items-center gap-2">
+                Ver en GitHub
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </span>
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs Section -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Tab Navigation -->
+      <div class="flex flex-wrap gap-2 mb-8 border-b border-white/10">
+        <button 
+          class="tab-btn active" 
+          data-tab="demo"
+          style="padding: 1rem 1.5rem; border: none; background: transparent; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.3s ease; cursor: pointer;"
+        >
+          Demo
+        </button>
+        <button 
+          class="tab-btn" 
+          data-tab="capturas"
+          style="padding: 1rem 1.5rem; border: none; background: transparent; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.3s ease; cursor: pointer;"
+        >
+          Capturas
+        </button>
+        <button 
+          class="tab-btn" 
+          data-tab="codigo"
+          style="padding: 1rem 1.5rem; border: none; background: transparent; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.3s ease; cursor: pointer;"
+        >
+          Código
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content">
+        <!-- Demo Tab -->
+        <div id="demo-tab" class="tab-panel active">
+          {project.data.demoUrl ? (
+            <div class="card">
+              <div class="aspect-video rounded-lg overflow-hidden">
+                <iframe 
+                  src={project.data.demoUrl}
+                  class="w-full h-full"
+                  frameborder="0"
+                  allowfullscreen
+                  title={`Demo de ${project.data.title}`}
+                ></iframe>
+              </div>
+            </div>
+          ) : (
+            <div class="card text-center py-20">
+              <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
+                <span class="text-6xl">🚧</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4">Sin demo pública</h3>
+              <p class="text-gray-400 mb-8">Este proyecto no tiene una demo pública disponible.</p>
+              {project.data.repoUrl && (
+                <a href={project.data.repoUrl} target="_blank" rel="noopener noreferrer" class="btn">
+                  Ver Código en GitHub
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
+        <!-- Capturas Tab -->
+        <div id="capturas-tab" class="tab-panel" style="display: none;">
+          {project.data.images && project.data.images.length > 0 ? (
+            <div class="grid md:grid-cols-2 gap-6">
+              {project.data.images.map((image, index) => (
+                <div class="card reveal" data-tilt>
+                  <div class="aspect-video bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg overflow-hidden">
+                    <img 
+                      src={image} 
+                      alt={`${project.data.title} - Captura ${index + 1}`}
+                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    />
+                    <div class="w-full h-full flex items-center justify-center" style="display: none;">
+                      <span class="text-6xl">📸</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="card text-center py-20">
+              <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
+                <span class="text-6xl">📸</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4">Sin capturas disponibles</h3>
+              <p class="text-gray-400">No hay capturas de pantalla para este proyecto.</p>
+            </div>
+          )}
+        </div>
+
+        <!-- Código Tab -->
+        <div id="codigo-tab" class="tab-panel" style="display: none;">
+          {githubInfo && project.data.codeFiles && project.data.codeFiles.length > 0 ? (
+            <CodeViewer 
+              repoUrl={project.data.repoUrl}
+              files={project.data.codeFiles}
+              branch="main"
+            />
+          ) : (
+            <div class="card text-center py-20">
+              <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
+                <span class="text-6xl">💻</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4">Sin archivos de código</h3>
+              <p class="text-gray-400 mb-8">No hay archivos de código configurados para este proyecto.</p>
+              {project.data.repoUrl && (
+                <a href={project.data.repoUrl} target="_blank" rel="noopener noreferrer" class="btn">
+                  Ver Repositorio Completo
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Description -->
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="card">
+        <h2 class="text-3xl font-bold text-white mb-6">Sobre este proyecto</h2>
+        <div class="prose prose-invert max-w-none">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex flex-col sm:flex-row gap-6 justify-between items-center">
+        <a href="/proyectos" class="btn" style="background: transparent; color: var(--text); outline: 1px solid rgba(255,255,255,.15);">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Volver a Proyectos
+          </span>
+        </a>
+        <a href="/contacto" class="btn">
+          <span class="flex items-center gap-2">
+            Trabajar Conmigo
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { enableButtonRipple, revealOnScroll, applyStagger } from '../../scripts/motion.js';
+  import { enableTilt } from '../../scripts/tilt.js';
+  
+  // Tab functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTab = btn.getAttribute('data-tab');
+        
+        // Remove active class from all buttons and panels
+        tabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.color = 'var(--muted)';
+          b.style.borderBottomColor = 'transparent';
+        });
+        tabPanels.forEach(p => p.style.display = 'none');
+        
+        // Add active class to clicked button
+        btn.classList.add('active');
+        btn.style.color = 'var(--accent)';
+        btn.style.borderBottomColor = 'var(--accent)';
+        
+        // Show corresponding panel
+        const targetPanel = document.getElementById(`${targetTab}-tab`);
+        if (targetPanel) {
+          targetPanel.style.display = 'block';
+        }
+      });
+    });
+  });
+  
+  enableButtonRipple(); revealOnScroll(); applyStagger(); enableTilt();
+</script>
+
+<style>
+  .tab-btn.active {
+    color: var(--accent) !important;
+    border-bottom-color: var(--accent) !important;
+  }
+  
+  .tab-btn:hover {
+    color: var(--text) !important;
+  }
+  
+  .prose {
+    color: var(--text);
+  }
+  
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    color: var(--text);
+  }
+  
+  .prose a {
+    color: var(--accent);
+  }
+  
+  .prose code {
+    background: rgba(255,255,255,.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    color: var(--accent);
+  }
+</style>

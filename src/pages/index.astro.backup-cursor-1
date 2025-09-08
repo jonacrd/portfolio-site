@@ -29,16 +29,8 @@ import Button from '../components/Button.astro';
         <!-- Profile Avatar with Advanced Animation -->
         <div class="relative mb-12">
           <div class="w-40 h-40 mx-auto rounded-full bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue p-1 animate-pulse-glow">
-            <div class="w-full h-full rounded-full overflow-hidden">
-              <img 
-                src="/jonadevel.jpg" 
-                alt="Jonathan Guarirapa - Desarrollador Web"
-                class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="w-full h-full bg-nextsite-bg-dark flex items-center justify-center" style="display: none;">
-                <span class="text-5xl font-bold text-white">JG</span>
-              </div>
+            <div class="w-full h-full rounded-full bg-nextsite-bg-dark flex items-center justify-center">
+              <span class="text-5xl font-bold text-white">JG</span>
             </div>
           </div>
           <!-- Orbiting Elements -->
@@ -52,31 +44,31 @@ import Button from '../components/Button.astro';
         
         <!-- Main Heading with Typewriter Effect -->
         <div class="mb-8">
-        <h1 class="text-6xl md:text-8xl font-bold mb-4 reveal">
-          <span class="text-white block">Hola, soy</span>
-          <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent animate-gradient-x">
-            Jonathan
-          </span>
-          <span class="bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent animate-gradient-x" style="animation-delay: 0.5s;">
-            Guarirapa
-          </span>
-      </h1>
+          <h1 class="text-6xl md:text-8xl font-bold mb-4">
+            <span class="text-white block">Hola, soy</span>
+            <span class="bg-gradient-to-r from-nextsite-light-blue via-nextsite-accent-blue to-nextsite-light-blue bg-clip-text text-transparent animate-gradient-x">
+              Jonathan
+            </span>
+            <span class="bg-gradient-to-r from-nextsite-accent-blue via-nextsite-light-blue to-nextsite-accent-blue bg-clip-text text-transparent animate-gradient-x" style="animation-delay: 0.5s;">
+              Guarirapa
+            </span>
+          </h1>
         </div>
         
         <!-- Animated Subtitle -->
         <div class="mb-8">
-          <p class="text-2xl md:text-3xl text-gray-300 mb-4 max-w-4xl mx-auto leading-relaxed reveal">
+          <p class="text-2xl md:text-3xl text-gray-300 mb-4 max-w-4xl mx-auto leading-relaxed">
             Desarrollador Web Profesional especializado en crear
             <span class="text-nextsite-accent-blue font-semibold animate-pulse"> experiencias digitales excepcionales</span>
           </p>
-          <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed reveal">
+          <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Transformo ideas en realidad digital con diseño moderno, código limpio y UX excepcional
           </p>
         </div>
         
         <!-- Animated CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-          <Button href="/proyectos" size="lg" class="animate-pulse-glow transform hover:scale-105 transition-all duration-300 btn">
+          <Button href="/proyectos" size="lg" class="animate-pulse-glow transform hover:scale-105 transition-all duration-300">
             <span class="flex items-center gap-2">
               Ver Mis Proyectos
               <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +76,7 @@ import Button from '../components/Button.astro';
               </svg>
             </span>
           </Button>
-          <Button href="/contacto" variant="ghost" size="lg" class="transform hover:scale-105 transition-all duration-300 btn">
+          <Button href="/contacto" variant="ghost" size="lg" class="transform hover:scale-105 transition-all duration-300">
             <span class="flex items-center gap-2">
               Trabajemos Juntos
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,7 +133,7 @@ import Button from '../components/Button.astro';
       
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Quick Service 1 -->
-        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105 card reveal" data-tilt>
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105">
           <div class="w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <span class="text-3xl">💻</span>
           </div>
@@ -149,13 +141,13 @@ import Button from '../components/Button.astro';
           <p class="text-gray-400 mb-6 leading-relaxed">
             Sitios web modernos, rápidos y optimizados que convierten visitantes en clientes.
           </p>
-          <Button href="/servicios" variant="ghost" size="sm" class="btn">
+          <Button href="/servicios" variant="ghost" size="sm">
             Ver Detalles
           </Button>
         </div>
         
         <!-- Quick Service 2 -->
-        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105 card reveal" data-tilt style="animation-delay: 0.2s;">
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105" style="animation-delay: 0.2s;">
           <div class="w-20 h-20 bg-gradient-to-r from-nextsite-accent-blue to-nextsite-light-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <span class="text-3xl">🎨</span>
           </div>
@@ -163,13 +155,13 @@ import Button from '../components/Button.astro';
           <p class="text-gray-400 mb-6 leading-relaxed">
             Interfaces intuitivas y atractivas que mejoran la experiencia del usuario.
           </p>
-          <Button href="/servicios" variant="ghost" size="sm" class="btn">
+          <Button href="/servicios" variant="ghost" size="sm">
             Ver Detalles
           </Button>
         </div>
         
         <!-- Quick Service 3 -->
-        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105 card reveal" data-tilt style="animation-delay: 0.4s;">
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105" style="animation-delay: 0.4s;">
           <div class="w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <span class="text-3xl">⚡</span>
           </div>
@@ -177,7 +169,7 @@ import Button from '../components/Button.astro';
           <p class="text-gray-400 mb-6 leading-relaxed">
             Mejora el rendimiento y velocidad de tu sitio web para mejores resultados.
           </p>
-          <Button href="/servicios" variant="ghost" size="sm" class="btn">
+          <Button href="/servicios" variant="ghost" size="sm">
             Ver Detalles
           </Button>
         </div>
@@ -199,7 +191,7 @@ import Button from '../components/Button.astro';
       
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Featured Project 1 -->
-        <div class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group animate-fade-in-left transform hover:scale-105 card reveal" data-tilt>
+        <div class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group animate-fade-in-left transform hover:scale-105">
           <div class="h-64 bg-gradient-to-br from-nextsite-light-blue to-nextsite-accent-blue flex items-center justify-center relative overflow-hidden">
             <span class="text-6xl">🌐</span>
             <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
@@ -210,18 +202,18 @@ import Button from '../components/Button.astro';
               Plataforma completa de comercio electrónico con carrito, pagos y panel de administración.
             </p>
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">React</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">Node.js</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">MongoDB</span>
+              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">React</span>
+              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">Node.js</span>
+              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">MongoDB</span>
             </div>
-            <Button href="/proyectos" size="sm" variant="ghost" class="btn">
+            <Button href="/proyectos" size="sm" variant="ghost">
               Ver Proyecto Completo
             </Button>
           </div>
         </div>
         
         <!-- Featured Project 2 -->
-        <div class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group animate-fade-in-right transform hover:scale-105 card reveal" data-tilt>
+        <div class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group animate-fade-in-right transform hover:scale-105">
           <div class="h-64 bg-gradient-to-br from-nextsite-accent-blue to-nextsite-light-blue flex items-center justify-center relative overflow-hidden">
             <span class="text-6xl">📱</span>
             <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
@@ -232,11 +224,11 @@ import Button from '../components/Button.astro';
               Aplicación web para gestión de inventario con dashboard interactivo y reportes.
             </p>
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">Vue.js</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">Firebase</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">Chart.js</span>
+              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">Vue.js</span>
+              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">Firebase</span>
+              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">Chart.js</span>
             </div>
-            <Button href="/proyectos" size="sm" variant="ghost" class="btn">
+            <Button href="/proyectos" size="sm" variant="ghost">
               Ver Proyecto Completo
             </Button>
           </div>
@@ -244,7 +236,7 @@ import Button from '../components/Button.astro';
       </div>
       
       <div class="text-center mt-12">
-        <Button href="/proyectos" size="lg" class="btn">
+        <Button href="/proyectos" size="lg">
           Ver Todos los Proyectos
         </Button>
       </div>
@@ -288,7 +280,7 @@ import Button from '../components/Button.astro';
           </div>
           
           <div class="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button href="/contacto" size="lg" class="animate-pulse-glow btn">
+            <Button href="/contacto" size="lg" class="animate-pulse-glow">
               <span class="flex items-center gap-2">
                 Iniciar Proyecto
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -296,7 +288,7 @@ import Button from '../components/Button.astro';
                 </svg>
               </span>
             </Button>
-            <Button href="/sobre-mi" variant="ghost" size="lg" class="btn">
+            <Button href="/sobre-mi" variant="ghost" size="lg">
               <span class="flex items-center gap-2">
                 Conoce Más Sobre Mí
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

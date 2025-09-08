@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+<BaseLayout title="NextSite — Servicios" theme="nextsite">
+  <section style="max-width:1100px;margin:0 auto;padding:64px 20px;">
+    <h1 class="reveal">Sitios que venden.</h1>
+    <p class="reveal" style="color:var(--muted)">Diseño, velocidad y UX que convierten. Precios claros, entrega puntual.</p>
+    <div class="grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;">
+      <article class="card reveal" data-tilt>
+        <h3>Landing Pro</h3>
+        <ul style="color:var(--muted)">
+          <li>Responsive</li><li>Formulario</li><li>SEO base</li><li>Hasta 5 secciones</li>
+        </ul>
+        <a class="btn" href="/contacto">Solicitar Landing Page</a>
+      </article>
+      <article class="card reveal" data-tilt>
+        <h3>Sitio Completo</h3>
+        <ul style="color:var(--muted)">
+          <li>Hasta 10 páginas</li><li>Panel básico</li><li>SEO optimizado</li>
+        </ul>
+        <a class="btn" href="/contacto">Solicitar Sitio Web</a>
+      </article>
+      <article class="card reveal" data-tilt>
+        <h3>Aplicación</h3>
+        <ul style="color:var(--muted)">
+          <li>DB incluida</li><li>Auth</li><li>API a medida</li>
+        </ul>
+        <a class="btn" href="/contacto">Solicitar Aplicación</a>
+      </article>
+    </div>
+    <div style="margin-top:32px;display:flex;gap:.6rem">
+      <a class="btn" href="/contacto">Solicitar Cotización</a>
+      <a class="btn" style="background:transparent;color:var(--text);outline:1px solid rgba(255,255,255,.15)" href="/proyectos">Ver Trabajos</a>
+    </div>
+  </section>
+  <script>
+    import { enableButtonRipple, revealOnScroll, applyStagger } from "../../scripts/motion.js";
+    import { enableTilt } from "../../scripts/tilt.js";
+    enableButtonRipple(); revealOnScroll(); applyStagger(); enableTilt();
+  </script>
+</BaseLayout>

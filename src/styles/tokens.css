@@ -1,0 +1,15 @@
+:root{
+  --bg:#0E0F12; --text:#E6E6E6; --muted:#A5ACB8;
+  --accent:#00C2FF; --accent-2:#7C4DFF;
+  --grad: linear-gradient(90deg, var(--accent), var(--accent-2));
+  --radius:18px;
+  --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+  --shadow-glow: 0 0 40px rgba(0,194,255,.15);
+  --fast:.18s; --norm:.30s;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+[data-theme="nextsite"]{
+  --accent:#00E5FF; --accent-2:#A3FF12;
+  --grad: linear-gradient(90deg, var(--accent), var(--accent-2));
+  --shadow-glow: 0 0 40px rgba(0,229,255,.18);
+}
