@@ -1,6 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
+import { getCollection } from 'astro:content';
+
+// Get featured projects for the homepage
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(project => project.data.featured)
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 2); // Show only top 2 featured projects
 ---
 
 <Layout 
@@ -198,53 +206,93 @@ import Button from '../components/Button.astro';
       </div>
       
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Featured Project 1 -->
-        <div class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group animate-fade-in-left transform hover:scale-105 card reveal" data-tilt>
-          <div class="h-64 bg-gradient-to-br from-nextsite-light-blue to-nextsite-accent-blue flex items-center justify-center relative overflow-hidden">
-            <span class="text-6xl">🌐</span>
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
-          </div>
-          <div class="p-8">
-            <h3 class="text-2xl font-bold text-white mb-3">E-commerce Moderno</h3>
-            <p class="text-gray-400 mb-6 leading-relaxed">
-              Plataforma completa de comercio electrónico con carrito, pagos y panel de administración.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">React</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">Node.js</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">MongoDB</span>
+        {featuredProjects.map((project, index) => (
+          <div class={`glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group transform hover:scale-105 card reveal ${index === 0 ? 'animate-fade-in-left' : 'animate-fade-in-right'}`} data-tilt>
+            {/* Project Cover Image or Fallback */}
+            <div class="h-64 relative overflow-hidden">
+              {project.data.cover ? (
+                <img 
+                  src={project.data.cover} 
+                  alt={project.data.title}
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              ) : (
+                <div class="w-full h-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+                  <span class="text-6xl">
+                    {project.data.title.includes('Tienda') || project.data.title.includes('E-commerce') ? '🛒' : 
+                     project.data.title.includes('Landing') || project.data.title.includes('Barber') ? '✂️' : 
+                     project.data.title.includes('Portfolio') ? '💼' : '🌐'}
+                  </span>
+                </div>
+              )}
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
+              
+              {/* Featured Badge */}
+              <div class="absolute top-4 right-4">
+                <span class="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  Destacado
+                </span>
+              </div>
             </div>
-            <Button href="/proyectos" size="sm" variant="ghost" class="btn">
-              Ver Proyecto Completo
-            </Button>
+            
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-white mb-3">{project.data.title}</h3>
+              <p class="text-gray-400 mb-6 leading-relaxed">
+                {project.data.summary}
+              </p>
+              
+              {/* Tech Stack */}
+              <div class="flex flex-wrap gap-2 mb-6">
+                {project.data.stack.slice(0, 3).map((tech) => (
+                  <span class="px-3 py-1 bg-cyan-400/20 text-cyan-400 rounded-full text-xs pill">
+                    {tech}
+                  </span>
+                ))}
+                {project.data.stack.length > 3 && (
+                  <span class="px-3 py-1 bg-gray-600/20 text-gray-400 rounded-full text-xs pill">
+                    +{project.data.stack.length - 3}
+                  </span>
+                )}
+              </div>
+              
+              {/* Action Buttons */}
+              <div class="flex gap-3">
+                <Button href={`/projects/${project.slug}`} size="sm" variant="primary" class="btn flex-1">
+                  Ver Proyecto
+                </Button>
+                {project.data.demoUrl && (
+                  <a 
+                    href={project.data.demoUrl} 
+                    target="_blank" 
+                    rel="noopener"
+                    class="px-4 py-2 text-sm font-medium text-cyan-400 border border-cyan-400/30 hover:bg-cyan-400/10 rounded-lg transition-all duration-200 flex items-center gap-2"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    Demo
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
         
-        <!-- Featured Project 2 -->
-        <div class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group animate-fade-in-right transform hover:scale-105 card reveal" data-tilt>
-          <div class="h-64 bg-gradient-to-br from-nextsite-accent-blue to-nextsite-light-blue flex items-center justify-center relative overflow-hidden">
-            <span class="text-6xl">📱</span>
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
-          </div>
-          <div class="p-8">
-            <h3 class="text-2xl font-bold text-white mb-3">App de Gestión</h3>
-            <p class="text-gray-400 mb-6 leading-relaxed">
-              Aplicación web para gestión de inventario con dashboard interactivo y reportes.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">Vue.js</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">Firebase</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs pill">Chart.js</span>
-            </div>
-            <Button href="/proyectos" size="sm" variant="ghost" class="btn">
-              Ver Proyecto Completo
+        {/* Fallback if no featured projects */}
+        {featuredProjects.length === 0 && (
+          <div class="col-span-2 text-center py-12">
+            <div class="text-4xl mb-4">🚧</div>
+            <h3 class="text-xl font-bold text-white mb-2">Proyectos Destacados Próximamente</h3>
+            <p class="text-gray-400 mb-6">Estoy preparando mis mejores proyectos para mostrarte aquí.</p>
+            <Button href="/projects" size="md" class="btn">
+              Ver Todos los Proyectos
             </Button>
           </div>
-        </div>
+        )}
       </div>
       
       <div class="text-center mt-12">
-        <Button href="/proyectos" size="lg" class="btn">
+        <Button href="/projects" size="lg" class="btn">
           Ver Todos los Proyectos
         </Button>
       </div>
