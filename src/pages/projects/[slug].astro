@@ -1,0 +1,299 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import CodeViewer from "../../components/CodeViewer.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { data: projectData } = project;
+---
+
+<Layout 
+  title={`${projectData.title} | Proyectos`}
+  description={projectData.summary}
+  image={projectData.cover}
+>
+  <section style="max-width:1100px;margin:0 auto;padding:64px 20px;">
+    <!-- Back Navigation -->
+    <div class="mb-8">
+      <a 
+        href="/projects" 
+        style="display:inline-flex;align-items:center;gap:8px;color:#9aa3b2;text-decoration:none;transition:color 0.2s ease;"
+        onmouseover="this.style.color='#ffffff'"
+        onmouseout="this.style.color='#9aa3b2'"
+      >
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Volver a Proyectos
+      </a>
+    </div>
+
+    <!-- Project Header -->
+    <div class="animate-fade-in-up mb-12">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+        <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(90deg,#00C2FF,#7C4DFF);box-shadow:0 0 25px rgba(0,194,255,.4);flex-shrink:0;"></div>
+        <h1 style="margin:0;font-size:2.5rem;font-weight:800;color:#ffffff;">
+          {projectData.title}
+        </h1>
+        {projectData.featured && (
+          <span style="background:linear-gradient(90deg,#00C2FF,#7C4DFF);color:#051018;padding:.4rem .8rem;border-radius:999px;font-size:.85rem;font-weight:600;">
+            Proyecto Destacado
+          </span>
+        )}
+      </div>
+      
+      <p style="color:#9aa3b2;font-size:1.2rem;line-height:1.6;margin-bottom:24px;max-width:800px;">
+        {projectData.summary}
+      </p>
+      
+      <!-- Tech Stack -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;">
+        {projectData.stack.map((tech) => (
+          <span style="border:1px solid #2b2f36;border-radius:999px;padding:.4rem .8rem;font-size:.9rem;color:#cbd5e1;background:rgba(255,255,255,.03);">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <nav style="display:flex;gap:12px;margin:24px 0;flex-wrap:wrap;">
+      <button 
+        class="btn tab active" 
+        data-tab="demo"
+        style="padding:.8rem 1.2rem;background:linear-gradient(90deg,#00C2FF,#7C4DFF);color:#051018;border:none;border-radius:10px;font-weight:600;cursor:pointer;transition:all 0.2s ease;"
+      >
+        🚀 Demo
+      </button>
+      <button 
+        class="btn tab" 
+        data-tab="shots"
+        style="padding:.8rem 1.2rem;background:transparent;color:#e5e7eb;border:1px solid rgba(255,255,255,.15);border-radius:10px;font-weight:600;cursor:pointer;transition:all 0.2s ease;"
+      >
+        📸 Capturas
+      </button>
+      <button 
+        class="btn tab" 
+        data-tab="code"
+        style="padding:.8rem 1.2rem;background:transparent;color:#e5e7eb;border:1px solid rgba(255,255,255,.15);border-radius:10px;font-weight:600;cursor:pointer;transition:all 0.2s ease;"
+      >
+        💻 Código
+      </button>
+      
+      <!-- External Links -->
+      <div style="margin-left:auto;display:flex;gap:12px;flex-wrap:wrap;">
+        <a 
+          href={projectData.repoUrl} 
+          target="_blank" 
+          rel="noopener" 
+          class="btn"
+          style="padding:.8rem 1.2rem;background:transparent;color:#e5e7eb;border:1px solid rgba(255,255,255,.15);text-decoration:none;border-radius:10px;font-weight:600;transition:all 0.2s ease;"
+          onmouseover="this.style.background='rgba(255,255,255,.1)';this.style.color='#ffffff'"
+          onmouseout="this.style.background='transparent';this.style.color='#e5e7eb'"
+        >
+          GitHub
+        </a>
+        {projectData.demoUrl && (
+          <a 
+            href={projectData.demoUrl} 
+            target="_blank" 
+            rel="noopener" 
+            class="btn"
+            style="padding:.8rem 1.2rem;background:rgba(0,194,255,.1);color:#00C2FF;border:1px solid rgba(0,194,255,.3);text-decoration:none;border-radius:10px;font-weight:600;transition:all 0.2s ease;"
+            onmouseover="this.style.background='rgba(0,194,255,.2)';this.style.color='#ffffff'"
+            onmouseout="this.style.background='rgba(0,194,255,.1)';this.style.color='#00C2FF'"
+          >
+            Ver en Vivo
+          </a>
+        )}
+      </div>
+    </nav>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Demo Tab -->
+      <div id="tab-demo" class="tab-panel active" style="display:block;">
+        {projectData.demoUrl ? (
+          <div style="border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.3);background:#000;">
+            <div style="background:#1a1a1a;padding:12px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #333;">
+              <div style="width:12px;height:12px;border-radius:50%;background:#ff5f57;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#28ca42;"></div>
+              <span style="margin-left:16px;color:#9aa3b2;font-size:.9rem;">{projectData.demoUrl}</span>
+            </div>
+            <iframe 
+              src={projectData.demoUrl} 
+              loading="lazy" 
+              style="width:100%;height:70vh;border:0;display:block;"
+              title={`Demo de ${projectData.title}`}
+            ></iframe>
+          </div>
+        ) : (
+          <div style="text-align:center;padding:4rem 2rem;border:2px dashed rgba(255,255,255,.1);border-radius:16px;">
+            <div style="font-size:3rem;margin-bottom:1rem;">🚧</div>
+            <h3 style="color:#ffffff;margin-bottom:1rem;">Demo no disponible</h3>
+            <p style="color:#9aa3b2;margin-bottom:2rem;">
+              Este proyecto no tiene una demo pública disponible, pero puedes revisar el código fuente.
+            </p>
+            <a 
+              href={projectData.repoUrl} 
+              target="_blank" 
+              rel="noopener"
+              style="padding:.8rem 1.5rem;background:linear-gradient(90deg,#00C2FF,#7C4DFF);color:#051018;text-decoration:none;border-radius:10px;font-weight:600;display:inline-block;transition:all 0.2s ease;"
+              onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 25px rgba(0,194,255,.4)'"
+              onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(0,194,255,.2)'"
+            >
+              Ver Código en GitHub
+            </a>
+          </div>
+        )}
+      </div>
+
+      <!-- Screenshots Tab -->
+      <div id="tab-shots" class="tab-panel" style="display:none;">
+        {projectData.images.length > 0 ? (
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+            {projectData.images.map((imageSrc, index) => (
+              <div 
+                style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2);transition:transform 0.3s ease;"
+                onmouseover="this.style.transform='scale(1.02)'"
+                onmouseout="this.style.transform='scale(1)'"
+              >
+                <img 
+                  src={imageSrc} 
+                  alt={`Captura ${index + 1} de ${projectData.title}`}
+                  style="width:100%;height:auto;display:block;"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div style="text-align:center;padding:4rem 2rem;border:2px dashed rgba(255,255,255,.1);border-radius:16px;">
+            <div style="font-size:3rem;margin-bottom:1rem;">📸</div>
+            <h3 style="color:#ffffff;margin-bottom:1rem;">Capturas próximamente</h3>
+            <p style="color:#9aa3b2;">
+              Las capturas de pantalla de este proyecto se agregarán pronto.
+            </p>
+          </div>
+        )}
+      </div>
+
+      <!-- Code Tab -->
+      <div id="tab-code" class="tab-panel" style="display:none;">
+        <CodeViewer 
+          repoUrl={projectData.repoUrl} 
+          files={projectData.codeFiles} 
+          branch={projectData.branch}
+        />
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-16 animate-fade-in-up">
+      <h3 style="color:#ffffff;margin-bottom:1rem;font-size:1.5rem;">
+        ¿Te interesa un proyecto similar?
+      </h3>
+      <p style="color:#9aa3b2;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;">
+        Puedo crear algo parecido o mejor para tu negocio. Hablemos de tu proyecto.
+      </p>
+      <a 
+        href="/contacto" 
+        class="btn"
+        style="padding:1rem 2rem;background:linear-gradient(90deg,#00C2FF,#7C4DFF);color:#051018;text-decoration:none;border-radius:12px;font-weight:700;font-size:1.1rem;transition:all 0.3s ease;display:inline-block;"
+        onmouseover="this.style.transform='translateY(-3px) scale(1.02)';this.style.boxShadow='0 10px 30px rgba(0,194,255,.4)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)';this.style.boxShadow='0 4px 15px rgba(0,194,255,.2)'"
+      >
+        Solicitar Cotización
+      </a>
+    </div>
+  </section>
+
+  <style>
+    /* Tab Styles */
+    .tab:hover {
+      transform: translateY(-2px);
+    }
+    
+    .tab.active {
+      background: linear-gradient(90deg,#00C2FF,#7C4DFF) !important;
+      color: #051018 !important;
+      border-color: transparent !important;
+    }
+    
+    .tab:not(.active):hover {
+      background: rgba(255,255,255,.1) !important;
+      color: #ffffff !important;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .tab-panel {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    .tab-panel.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.tab');
+      const panels = {
+        demo: document.getElementById('tab-demo'),
+        shots: document.getElementById('tab-shots'),
+        code: document.getElementById('tab-code')
+      };
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const targetTab = tab.dataset.tab;
+          
+          // Update tab styles
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          // Show target panel
+          Object.values(panels).forEach(panel => {
+            panel.style.display = 'none';
+            panel.classList.remove('active');
+          });
+          
+          if (panels[targetTab]) {
+            panels[targetTab].style.display = 'block';
+            // Small delay for smooth transition
+            setTimeout(() => {
+              panels[targetTab].classList.add('active');
+            }, 50);
+          }
+        });
+      });
+    });
+  </script>
+</Layout>

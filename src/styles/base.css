@@ -34,3 +34,6 @@ body{margin:0;background:var(--bg);color:var(--text);
   transition:background var(--fast) var(--ease),transform var(--fast) var(--ease)}
 .card:hover .badge{background:var(--grad);color:#051018;transform:translateY(-2px)}
 
+
+
+

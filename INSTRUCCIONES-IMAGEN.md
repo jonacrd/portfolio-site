@@ -60,3 +60,6 @@ El código incluye un `onerror` handler que:
 
 ¡Tu portfolio ya está listo para mostrar tu imagen profesional! 🎉
 
+
+
+

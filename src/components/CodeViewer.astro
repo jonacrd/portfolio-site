@@ -1,275 +1,147 @@
 ---
-export interface Props {
-  repoUrl: string;
-  files: string[];
+interface Props { 
+  repoUrl: string; 
+  files: string[]; 
   branch?: string;
 }
 
 const { repoUrl, files, branch = "main" } = Astro.props;
 
-// Parse GitHub repo URL
-function parseGitHubUrl(url: string) {
-  const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
-  if (match) {
-    return {
-      owner: match[1],
-      repo: match[2],
-      fullUrl: url
-    };
-  }
-  return null;
-}
-
-const githubInfo = parseGitHubUrl(repoUrl);
-
-if (!githubInfo) {
-  throw new Error('Invalid GitHub repository URL');
-}
-
-const { owner, repo } = githubInfo;
+// Parse GitHub URL to extract owner and repo
+const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/#]+)/);
+const owner = match?.[1];
+const repo = match?.[2];
+const baseUrl = owner && repo ? `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/` : null;
 ---
 
-<div class="card">
-  <div class="mb-6">
-    <h3 class="text-2xl font-bold text-white mb-4">Archivos de Código</h3>
-    <p class="text-gray-400 mb-4">Explora los archivos principales de este proyecto:</p>
+<div style="border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden">
+  <!-- Tab Navigation -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;padding:10px;border-bottom:1px solid rgba(255,255,255,.08)">
+    {files.map((file, index) => (
+      <button 
+        class="tab" 
+        data-file={file} 
+        style={`padding:.4rem .6rem;border-radius:10px;outline:1px solid rgba(255,255,255,.15);background:${index === 0 ? '#00c2ff' : 'transparent'};color:${index === 0 ? '#051018' : '#e5e7eb'};cursor:pointer;transition:all 0.2s ease`}
+      >
+        {file}
+      </button>
+    ))}
     
     <!-- External Links -->
-    <div class="flex flex-wrap gap-3 mb-6">
-      <a 
-        href={repoUrl} 
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="btn"
-        style="background: transparent; color: var(--text); outline: 1px solid rgba(255,255,255,.15); padding: 0.5rem 1rem; font-size: 0.875rem;"
-      >
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-        Abrir en GitHub
-      </a>
-      
-      <a 
-        href={`https://stackblitz.com/github/${owner}/${repo}`}
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="btn"
-        style="background: transparent; color: var(--text); outline: 1px solid rgba(255,255,255,.15); padding: 0.5rem 1rem; font-size: 0.875rem;"
-      >
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-        Abrir en StackBlitz
-      </a>
-      
-      <a 
-        href={`https://github1s.com/${owner}/${repo}`}
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="btn"
-        style="background: transparent; color: var(--text); outline: 1px solid rgba(255,255,255,.15); padding: 0.5rem 1rem; font-size: 0.875rem;"
-      >
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-        </svg>
-        Ver como VSCode
-      </a>
-    </div>
+    <a href={repoUrl} target="_blank" rel="noopener" style="margin-left:auto" class="btn">
+      GitHub
+    </a>
+    {owner && repo && (
+      <>
+        <a 
+          href={`https://stackblitz.com/github/${owner}/${repo}`} 
+          target="_blank" 
+          rel="noopener"
+          class="btn"
+        >
+          StackBlitz
+        </a>
+        <a 
+          href={`https://github1s.com/${owner}/${repo}`} 
+          target="_blank" 
+          rel="noopener"
+          class="btn"
+        >
+          VSCode Online
+        </a>
+      </>
+    )}
   </div>
 
-  <!-- File Tabs -->
-  <div class="mb-6">
-    <div class="flex flex-wrap gap-2 border-b border-white/10">
-      {files.map((file, index) => (
-        <button 
-          class={`file-tab ${index === 0 ? 'active' : ''}`}
-          data-file={file}
-          style="padding: 0.75rem 1rem; border: none; background: transparent; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.3s ease; cursor: pointer; font-size: 0.875rem;"
-        >
-          {file.split('/').pop()}
-        </button>
-      ))}
-    </div>
-  </div>
-
-  <!-- Code Content -->
-  <div class="code-container">
-    {files.map((file, index) => (
-      <div 
-        class={`code-panel ${index === 0 ? 'active' : ''}`}
-        data-file={file}
-        style="display: none;"
-      >
-        <div class="code-header" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: rgba(255,255,255,.05); border-radius: 0.5rem 0.5rem 0 0; border-bottom: 1px solid rgba(255,255,255,.1);">
-          <span class="text-sm text-gray-400">{file}</span>
-          <a 
-            href={`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-accent hover:underline"
-            style="color: var(--accent);"
-          >
-            Ver archivo completo
-          </a>
-        </div>
-        <div 
-          class="code-content"
-          data-file={file}
-          style="background: #1a1a1a; border-radius: 0 0 0.5rem 0.5rem; overflow: auto; max-height: 500px;"
-        >
-          <div class="loading" style="padding: 2rem; text-align: center; color: var(--muted);">
-            <div class="animate-spin w-6 h-6 border-2 border-accent border-t-transparent rounded-full mx-auto mb-2"></div>
-            Cargando código...
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
+  <!-- Code Display -->
+  <pre 
+    id="codebox" 
+    style="margin:0;max-height:60vh;overflow:auto;padding:16px;background:#0b0d10"
+  >
+    <code 
+      id="code" 
+      style="font:13px/1.5 ui-monospace,Consolas,Menlo,monospace;color:#cbd5e1"
+    >
+      Selecciona un archivo…
+    </code>
+  </pre>
 </div>
 
 <script>
+  // Pass the baseUrl to the client-side script
+  const baseUrl = JSON.stringify(baseUrl);
+  
   document.addEventListener('DOMContentLoaded', function() {
-    const fileTabs = document.querySelectorAll('.file-tab');
-    const codePanels = document.querySelectorAll('.code-panel');
-    const codeContents = document.querySelectorAll('.code-content');
+    const base = JSON.parse(baseUrl);
+    const codeElement = document.getElementById('code');
+    const codeboxElement = document.getElementById('codebox');
     
-    // Tab switching
-    fileTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetFile = tab.getAttribute('data-file');
-        
-        // Remove active class from all tabs and panels
-        fileTabs.forEach(t => {
-          t.classList.remove('active');
-          t.style.color = 'var(--muted)';
-          t.style.borderBottomColor = 'transparent';
-        });
-        codePanels.forEach(p => p.style.display = 'none');
-        
-        // Add active class to clicked tab
-        tab.classList.add('active');
-        tab.style.color = 'var(--accent)';
-        tab.style.borderBottomColor = 'var(--accent)';
-        
-        // Show corresponding panel
-        const targetPanel = document.querySelector(`[data-file="${targetFile}"]`);
-        if (targetPanel && targetPanel.classList.contains('code-panel')) {
-          targetPanel.style.display = 'block';
+    async function loadFile(filePath) {
+      if (!base) {
+        codeElement.textContent = "Repo inválido - no se puede cargar el archivo";
+        return;
+      }
+      
+      codeElement.textContent = `Cargando ${filePath}…`;
+      
+      try {
+        const response = await fetch(base + filePath);
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
         }
-      });
-    });
+        
+        const content = await response.text();
+        codeElement.textContent = content;
+        codeboxElement.scrollTop = 0;
+        
+      } catch (error) {
+        codeElement.textContent = `No pude cargar ${filePath}: ${error.message}`;
+      }
+    }
     
-    // Load code content
-    codeContents.forEach(content => {
-      const file = content.getAttribute('data-file');
-      if (file) {
-        loadCodeContent(file, content);
+    // Setup tab functionality
+    const tabs = document.querySelectorAll('button.tab');
+    tabs.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        const filePath = button.dataset.file;
+        loadFile(filePath);
+        
+        // Update tab styles
+        tabs.forEach(tab => {
+          tab.style.background = 'transparent';
+          tab.style.color = '#e5e7eb';
+        });
+        button.style.background = '#00c2ff';
+        button.style.color = '#051018';
+      });
+      
+      // Load first file by default
+      if (index === 0) {
+        const filePath = button.dataset.file;
+        loadFile(filePath);
       }
     });
   });
-  
-  async function loadCodeContent(file: string, container: HTMLElement) {
-    try {
-      const { owner, repo, branch } = getRepoInfo();
-      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file}`;
-      
-      const response = await fetch(rawUrl);
-      if (response.ok) {
-        const code = await response.text();
-        container.innerHTML = `<pre><code class="language-${getFileLanguage(file)}">${escapeHtml(code)}</code></pre>`;
-      } else {
-        container.innerHTML = '<div style="padding: 2rem; text-align: center; color: var(--muted);">Error al cargar el archivo</div>';
-      }
-    } catch (error) {
-      container.innerHTML = '<div style="padding: 2rem; text-align: center; color: var(--muted);">Error al cargar el archivo</div>';
-    }
-  }
-  
-  function getRepoInfo() {
-    // Extract from the component props (this would need to be passed from the parent)
-    const repoUrl = window.location.pathname.includes('ejemplo-1') ? 'https://github.com/owner/ejemplo-1' : 'https://github.com/owner/ejemplo-2';
-    const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
-    return {
-      owner: match ? match[1] : 'owner',
-      repo: match ? match[2] : 'repo',
-      branch: 'main'
-    };
-  }
-  
-  function getFileLanguage(filename: string): string {
-    const ext = filename.split('.').pop()?.toLowerCase();
-    const langMap: Record<string, string> = {
-      'js': 'javascript',
-      'ts': 'typescript',
-      'jsx': 'jsx',
-      'tsx': 'tsx',
-      'vue': 'vue',
-      'html': 'html',
-      'css': 'css',
-      'scss': 'scss',
-      'sass': 'sass',
-      'json': 'json',
-      'md': 'markdown',
-      'py': 'python',
-      'java': 'java',
-      'cpp': 'cpp',
-      'c': 'c',
-      'php': 'php',
-      'rb': 'ruby',
-      'go': 'go',
-      'rs': 'rust',
-      'sql': 'sql',
-      'sh': 'bash',
-      'yml': 'yaml',
-      'yaml': 'yaml',
-      'xml': 'xml',
-      'astro': 'astro'
-    };
-    return langMap[ext || ''] || 'text';
-  }
-  
-  function escapeHtml(text: string): string {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
 </script>
 
 <style>
-  .file-tab.active {
-    color: var(--accent) !important;
-    border-bottom-color: var(--accent) !important;
-  }
-  
-  .file-tab:hover {
-    color: var(--text) !important;
-  }
-  
-  .code-content pre {
-    margin: 0;
-    padding: 1rem;
+  .btn {
+    padding: 0.4rem 0.6rem;
+    border-radius: 10px;
     background: transparent;
-    color: #e6e6e6;
-    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    color: #e5e7eb;
+    text-decoration: none;
+    outline: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.2s ease;
     font-size: 0.875rem;
-    line-height: 1.5;
-    overflow-x: auto;
   }
   
-  .code-content code {
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-    color: inherit;
+  .btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
   }
   
-  .animate-spin {
-    animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  .tab:hover {
+    background: rgba(0, 194, 255, 0.1) !important;
   }
 </style>
-

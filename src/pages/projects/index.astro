@@ -1,0 +1,218 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+// Get all projects and sort by order (highest first)
+const projects = (await getCollection("projects")).sort((a, b) => b.data.order - a.data.order);
+---
+
+<Layout 
+  title="Proyectos | Jonathan Guarirapa" 
+  description="Explora mis proyectos de desarrollo web, desde landing pages hasta aplicaciones completas con tecnologías modernas."
+>
+  <section style="max-width:1100px;margin:0 auto;padding:64px 20px;">
+    <!-- Header -->
+    <div class="text-center mb-16 animate-fade-in-up">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        Proyectos
+      </h1>
+      <p style="color:#9aa3b2;font-size:1.2rem;max-width:600px;margin:0 auto;">
+        Demo, capturas y código abierto. Cada proyecto incluye acceso completo al código fuente y documentación.
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:24px;margin-top:32px;">
+      {projects.map((project) => (
+        <article 
+          class="card reveal" 
+          style="padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);transition:all 0.3s ease;position:relative;overflow:hidden;"
+          data-tilt
+        >
+          <!-- Project Cover Image -->
+          {project.data.cover && (
+            <div style="margin-bottom:16px;border-radius:12px;overflow:hidden;">
+              <img 
+                src={project.data.cover} 
+                alt={project.data.title} 
+                style="width:100%;height:200px;object-fit:cover;transition:transform 0.3s ease;"
+                onmouseover="this.style.transform='scale(1.05)'"
+                onmouseout="this.style.transform='scale(1)'"
+              />
+            </div>
+          )}
+
+          <!-- Project Header -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(90deg,#00C2FF,#7C4DFF);box-shadow:0 0 20px rgba(0,194,255,.3);flex-shrink:0;"></div>
+            <h3 style="margin:0;font-size:1.4rem;font-weight:700;color:#ffffff;">
+              {project.data.title}
+            </h3>
+            {project.data.featured && (
+              <span style="background:linear-gradient(90deg,#00C2FF,#7C4DFF);color:#051018;padding:.2rem .5rem;border-radius:999px;font-size:.75rem;font-weight:600;">
+                Destacado
+              </span>
+            )}
+          </div>
+
+          <!-- Project Summary -->
+          <p style="color:#9aa3b2;margin:.6rem 0 1.2rem;line-height:1.6;font-size:0.95rem;">
+            {project.data.summary}
+          </p>
+
+          <!-- Tech Stack -->
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;">
+            {project.data.stack.map((tech) => (
+              <span style="border:1px solid #2b2f36;border-radius:999px;padding:.3rem .7rem;font-size:.8rem;color:#cbd5e1;background:rgba(255,255,255,.02);">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display:flex;gap:.8rem;margin-top:auto;">
+            <a 
+              href={`/projects/${project.slug}`} 
+              class="btn" 
+              style="flex:1;text-align:center;padding:.7rem 1rem;background:linear-gradient(90deg,#00C2FF,#7C4DFF);color:#051018;text-decoration:none;border-radius:10px;font-weight:600;transition:all 0.2s ease;"
+              onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 25px rgba(0,194,255,.4)'"
+              onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(0,194,255,.2)'"
+            >
+              Ver Detalle
+            </a>
+            <a 
+              href={project.data.repoUrl} 
+              target="_blank" 
+              rel="noopener" 
+              class="btn" 
+              style="padding:.7rem 1rem;background:transparent;color:#e5e7eb;outline:1px solid rgba(255,255,255,.15);text-decoration:none;border-radius:10px;font-weight:600;transition:all 0.2s ease;"
+              onmouseover="this.style.background='rgba(255,255,255,.1)';this.style.color='#ffffff'"
+              onmouseout="this.style.background='transparent';this.style.color='#e5e7eb'"
+            >
+              GitHub
+            </a>
+          </div>
+
+          <!-- Hover Effect Overlay -->
+          <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg, rgba(0,194,255,.05) 0%, rgba(124,77,255,.05) 100%);opacity:0;transition:opacity 0.3s ease;pointer-events:none;border-radius:16px;" class="hover-overlay"></div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Empty State -->
+    {projects.length === 0 && (
+      <div class="text-center py-20">
+        <div style="font-size:4rem;margin-bottom:1rem;">🚧</div>
+        <h3 style="color:#ffffff;margin-bottom:1rem;">Proyectos en construcción</h3>
+        <p style="color:#9aa3b2;">Pronto agregaré mis mejores proyectos aquí. ¡Mantente atento!</p>
+      </div>
+    )}
+
+    <!-- Call to Action -->
+    {projects.length > 0 && (
+      <div class="text-center mt-16 animate-fade-in-up">
+        <h3 style="color:#ffffff;margin-bottom:1rem;font-size:1.5rem;">
+          ¿Te gusta lo que ves?
+        </h3>
+        <p style="color:#9aa3b2;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;">
+          Estos son solo algunos ejemplos. Puedo crear algo similar para tu proyecto.
+        </p>
+        <a 
+          href="/contacto" 
+          class="btn"
+          style="padding:1rem 2rem;background:linear-gradient(90deg,#00C2FF,#7C4DFF);color:#051018;text-decoration:none;border-radius:12px;font-weight:700;font-size:1.1rem;transition:all 0.3s ease;display:inline-block;"
+          onmouseover="this.style.transform='translateY(-3px) scale(1.02)';this.style.boxShadow='0 10px 30px rgba(0,194,255,.4)'"
+          onmouseout="this.style.transform='translateY(0) scale(1)';this.style.boxShadow='0 4px 15px rgba(0,194,255,.2)'"
+        >
+          Solicitar Proyecto Similar
+        </a>
+      </div>
+    )}
+  </section>
+
+  <style>
+    .card:hover .hover-overlay {
+      opacity: 1;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 194, 255, 0.1);
+      border-color: rgba(0, 194, 255, 0.3);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+  <script>
+    // Reveal on scroll animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      function revealOnScroll() {
+        reveals.forEach(reveal => {
+          const windowHeight = window.innerHeight;
+          const elementTop = reveal.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < windowHeight - elementVisible) {
+            reveal.classList.add('is-visible');
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', revealOnScroll);
+      revealOnScroll(); // Run once on load
+    });
+
+    // 3D Tilt effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('[data-tilt]');
+      
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+      });
+    });
+  </script>
+</Layout>

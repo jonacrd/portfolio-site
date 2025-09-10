@@ -78,3 +78,6 @@ Este proyecto es una plataforma de comercio electrónico completa que demuestra 
 
 Este proyecto demuestra mi capacidad para crear aplicaciones web complejas, escalables y centradas en el usuario.
 
+
+
+
