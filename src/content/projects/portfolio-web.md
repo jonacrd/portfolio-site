@@ -6,7 +6,7 @@ demoUrl: "https://jonadevel-portfolio.vercel.app/"
 repoUrl: "https://github.com/jonacrd/portfolio-site"
 branch: "main"
 codeFiles: ["README.md", "src/pages/index.astro", "src/content/config.ts"]
-cover: "/images/projects/portfolio-web/cover.jpg"
+cover: "/images/projects/portfolio-web/cover.svg"
 images: [
   "/images/projects/portfolio-web/1.jpg",
   "/images/projects/portfolio-web/2.jpg"
@@ -52,3 +52,4 @@ Mi portfolio personal desarrollado como una aplicación web moderna que demuestr
 - **First Paint**: < 800ms en 3G
 
 Este proyecto representa mi enfoque hacia el desarrollo web moderno, combinando rendimiento, accesibilidad y experiencia de usuario excepcional.
+

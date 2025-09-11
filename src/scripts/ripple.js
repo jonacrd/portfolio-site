@@ -9,3 +9,4 @@ export function ripple(root = document) {
     });
   });
 }
+

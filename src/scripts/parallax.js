@@ -19,3 +19,4 @@ export function parallax(selector = '[data-parallax]') {
     layers.forEach(element => element.style.transform = '');
   });
 }
+

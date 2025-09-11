@@ -32,3 +32,4 @@ export function enableLightbox(root = document) {
     if (e.key === 'ArrowLeft') openLightbox((currentIndex - 1 + shots.length) % shots.length);
   });
 }
+

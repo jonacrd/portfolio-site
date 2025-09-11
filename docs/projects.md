@@ -156,3 +156,4 @@ npm run build
 # Limpiar archivos innecesarios
 node scripts/cleanup.mjs
 ```
+

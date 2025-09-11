@@ -22,3 +22,4 @@ export function enableFilters() {
     chips[0].click();
   }
 }
+
