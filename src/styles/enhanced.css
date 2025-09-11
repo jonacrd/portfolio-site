@@ -1,0 +1,275 @@
+/* Enhanced CSS for portfolio improvements */
+
+/* wow hero */
+.halo {
+  position: absolute;
+  inset: -12px;
+  z-index: 1;
+  border-radius: 999px;
+  filter: blur(18px);
+  background: conic-gradient(from 0deg, #00E5FF, #7C4DFF, #00E5FF);
+  animation: spin 8s linear infinite;
+  opacity: .85;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.grad-wobble {
+  display: inline-block;
+  background: linear-gradient(90deg, #00E5FF, #7C4DFF, #00E5FF);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: grad-x 6s ease infinite;
+}
+
+.grad-wobble:hover {
+  text-shadow: 0 0 22px rgba(124, 77, 255, .4);
+}
+
+@keyframes grad-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* botones magnéticos + ripple */
+.btn {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 12px;
+  padding: .8rem 1.1rem;
+  background: linear-gradient(90deg, #00C2FF, #7C4DFF);
+  color: #051018;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(160px 160px at var(--rx, 50%) var(--ry, 50%), #ffffff66, transparent 60%);
+  transition: .25s;
+}
+
+.btn.is-rp::after {
+  opacity: .9;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 194, 255, .3);
+}
+
+/* chips de prueba */
+.chip {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  border: 1px solid #ffffff22;
+  color: #e5e7eb;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: transparent;
+}
+
+.chip:hover {
+  border-color: #ffffff44;
+  box-shadow: 0 0 0 3px #00e5ff22;
+  transform: translateY(-1px);
+}
+
+.chip.active {
+  background: linear-gradient(90deg, #00E5FF, #7C4DFF);
+  color: #051018;
+  border: 0;
+}
+
+/* cards y reveal */
+.card {
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 16px;
+  padding: 18px;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+  will-change: transform;
+}
+
+.card:hover {
+  box-shadow: 0 10px 40px rgba(0, 194, 255, .15);
+  border-color: rgba(255, 255, 255, .15);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px) scale(.98);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: .55s cubic-bezier(.22, .61, .36, 1);
+}
+
+/* lightbox */
+#lightbox[hidden] {
+  display: none;
+}
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .85);
+  display: grid;
+  place-items: center;
+  z-index: 60;
+}
+
+#lightbox img {
+  max-width: 92vw;
+  max-height: 90vh;
+  border-radius: 12px;
+}
+
+#lightbox button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  background: #fff1;
+  padding: .4rem .7rem;
+  border-radius: 10px;
+  border: 1px solid #fff3;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#lightbox button:hover {
+  background: #fff2;
+  border-color: #fff5;
+}
+
+/* mini stories */
+.mini {
+  margin: .5rem 0 0;
+  padding-left: 18px;
+  color: #9aa3b2;
+}
+
+.mini li::marker {
+  color: #00E5FF;
+}
+
+/* scroll teaser */
+#teaser {
+  opacity: .7;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  color: #9aa3b2;
+}
+
+#teaser:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  color: #00E5FF;
+}
+
+/* filtros */
+.filters {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+/* shots grid */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.shot {
+  width: 100%;
+  border-radius: 12px;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.shot:hover {
+  transform: scale(1.02);
+}
+
+/* responsive adjustments */
+@media (max-width: 768px) {
+  .shots {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters {
+    justify-content: center;
+  }
+  
+  .chip {
+    margin: 3px 4px;
+  }
+}
+
+/* performance optimizations */
+.card,
+.btn,
+.chip,
+.shot {
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .halo,
+  .grad-wobble,
+  .reveal {
+    animation: none;
+  }
+  
+  .card,
+  .btn,
+  .chip {
+    transition: none;
+  }
+}
+
+/* focus states for accessibility */
+.btn:focus,
+.chip:focus {
+  outline: 2px solid #00E5FF;
+  outline-offset: 2px;
+}
+
+/* high contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    border-color: rgba(255, 255, 255, .3);
+  }
+  
+  .chip {
+    border-color: rgba(255, 255, 255, .5);
+  }
+}

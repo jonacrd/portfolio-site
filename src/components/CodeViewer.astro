@@ -19,9 +19,9 @@ const baseUrl = owner && repo ? `https://raw.githubusercontent.com/${owner}/${re
   <div style="display:flex;gap:8px;flex-wrap:wrap;padding:10px;border-bottom:1px solid rgba(255,255,255,.08)">
     {files.map((file, index) => (
       <button 
-        class="tab" 
+        class="tab btn" 
         data-file={file} 
-        style={`padding:.4rem .6rem;border-radius:10px;outline:1px solid rgba(255,255,255,.15);background:${index === 0 ? '#00c2ff' : 'transparent'};color:${index === 0 ? '#051018' : '#e5e7eb'};cursor:pointer;transition:all 0.2s ease`}
+        style={`background:${index === 0 ? 'linear-gradient(90deg,#00C2FF,#7C4DFF)' : 'transparent'};color:${index === 0 ? '#051018' : '#e5e7eb'};outline:${index === 0 ? '0' : '1px solid rgba(255,255,255,.15)'}`}
       >
         {file}
       </button>
@@ -110,9 +110,11 @@ const baseUrl = owner && repo ? `https://raw.githubusercontent.com/${owner}/${re
         tabs.forEach(tab => {
           tab.style.background = 'transparent';
           tab.style.color = '#e5e7eb';
+          tab.style.outline = '1px solid rgba(255,255,255,.15)';
         });
-        button.style.background = '#00c2ff';
+        button.style.background = 'linear-gradient(90deg,#00C2FF,#7C4DFF)';
         button.style.color = '#051018';
+        button.style.outline = '0';
       });
       
       // Load first file by default

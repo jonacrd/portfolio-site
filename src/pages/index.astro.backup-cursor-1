@@ -1,6 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
+import { getCollection } from 'astro:content';
+
+// Get featured projects for the homepage - only Tienda Online and Landing Barberia
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(project => project.data.featured && (
+    project.slug === 'tienda-online' || 
+    project.slug === 'landing-barberia'
+  ))
+  .sort((a, b) => b.data.order - a.data.order); // Tienda Online first (order: 100), then Landing (order: 90)
 ---
 
 <Layout 
@@ -8,7 +18,7 @@ import Button from '../components/Button.astro';
   description="Desarrollador web profesional especializado en crear experiencias digitales excepcionales. Servicios de desarrollo frontend, diseño UI/UX y soluciones web modernas."
 >
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden" data-parallax>
     <!-- Animated Background -->
     <div class="absolute inset-0 bg-gradient-to-br from-nextsite-bg-darker via-nextsite-dark-blue to-nextsite-bg-dark"></div>
     
@@ -17,11 +27,12 @@ import Button from '../components/Button.astro';
       <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.3) 1px, transparent 0); background-size: 50px 50px; animation: grid-move 20s linear infinite;"></div>
     </div>
     
-    <!-- Floating Geometric Shapes -->
-    <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-full blur-xl animate-float opacity-30"></div>
-    <div class="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-r from-nextsite-accent-blue to-nextsite-light-blue rounded-full blur-xl animate-float opacity-20" style="animation-delay: 1s;"></div>
-    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-white to-nextsite-accent-blue rounded-full blur-lg animate-float opacity-25" style="animation-delay: 2s;"></div>
-    <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-nextsite-light-blue to-white rounded-full blur-lg animate-float opacity-20" style="animation-delay: 3s;"></div>
+    <!-- Floating Geometric Shapes with Parallax -->
+    <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-full blur-xl animate-float opacity-30" data-depth="0.6"></div>
+    <div class="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-r from-nextsite-accent-blue to-nextsite-light-blue rounded-full blur-xl animate-float opacity-20" style="animation-delay: 1s;" data-depth="0.4"></div>
+    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-white to-nextsite-accent-blue rounded-full blur-lg animate-float opacity-25" style="animation-delay: 2s;" data-depth="0.8"></div>
+    <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-nextsite-light-blue to-white rounded-full blur-lg animate-float opacity-20" style="animation-delay: 3s;" data-depth="1.2"></div>
+    <div class="absolute bottom-1/3 left-1/3 w-8 h-8 bg-cyan-400 rounded-full opacity-40" data-depth="0.3"></div>
     
     <!-- Main Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
@@ -29,8 +40,16 @@ import Button from '../components/Button.astro';
         <!-- Profile Avatar with Advanced Animation -->
         <div class="relative mb-12">
           <div class="w-40 h-40 mx-auto rounded-full bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue p-1 animate-pulse-glow">
-            <div class="w-full h-full rounded-full bg-nextsite-bg-dark flex items-center justify-center">
-              <span class="text-5xl font-bold text-white">JG</span>
+            <div class="w-full h-full rounded-full overflow-hidden">
+              <img 
+                src="/jonadevel.jpg" 
+                alt="Jonathan Guarirapa - Desarrollador Web"
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="w-full h-full bg-nextsite-bg-dark flex items-center justify-center" style="display: none;">
+                <span class="text-5xl font-bold text-white">JG</span>
+              </div>
             </div>
           </div>
           <!-- Orbiting Elements -->
@@ -44,31 +63,28 @@ import Button from '../components/Button.astro';
         
         <!-- Main Heading with Typewriter Effect -->
         <div class="mb-8">
-          <h1 class="text-6xl md:text-8xl font-bold mb-4">
-            <span class="text-white block">Hola, soy</span>
-            <span class="bg-gradient-to-r from-nextsite-light-blue via-nextsite-accent-blue to-nextsite-light-blue bg-clip-text text-transparent animate-gradient-x">
-              Jonathan
-            </span>
-            <span class="bg-gradient-to-r from-nextsite-accent-blue via-nextsite-light-blue to-nextsite-accent-blue bg-clip-text text-transparent animate-gradient-x" style="animation-delay: 0.5s;">
-              Guarirapa
-            </span>
-          </h1>
+        <h1 class="text-6xl md:text-8xl font-bold mb-4 reveal">
+          <span class="text-white block">Hola, soy</span>
+          <span class="grad-wobble">
+            Jonathan Guarirapa
+          </span>
+      </h1>
         </div>
         
         <!-- Animated Subtitle -->
         <div class="mb-8">
-          <p class="text-2xl md:text-3xl text-gray-300 mb-4 max-w-4xl mx-auto leading-relaxed">
+          <p class="text-2xl md:text-3xl text-gray-300 mb-4 max-w-4xl mx-auto leading-relaxed reveal">
             Desarrollador Web Profesional especializado en crear
             <span class="text-nextsite-accent-blue font-semibold animate-pulse"> experiencias digitales excepcionales</span>
           </p>
-          <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed reveal">
             Transformo ideas en realidad digital con diseño moderno, código limpio y UX excepcional
           </p>
         </div>
         
         <!-- Animated CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-          <Button href="/proyectos" size="lg" class="animate-pulse-glow transform hover:scale-105 transition-all duration-300">
+          <Button href="/proyectos" size="lg" class="animate-pulse-glow transform hover:scale-105 transition-all duration-300 btn">
             <span class="flex items-center gap-2">
               Ver Mis Proyectos
               <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +92,7 @@ import Button from '../components/Button.astro';
               </svg>
             </span>
           </Button>
-          <Button href="/contacto" variant="ghost" size="lg" class="transform hover:scale-105 transition-all duration-300">
+          <Button href="/contacto" variant="ghost" size="lg" class="transform hover:scale-105 transition-all duration-300 btn">
             <span class="flex items-center gap-2">
               Trabajemos Juntos
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,12 +124,17 @@ import Button from '../components/Button.astro';
       </div>
     </div>
     
-    <!-- Advanced Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-      <div class="flex flex-col items-center gap-2 animate-bounce">
-        <span class="text-sm text-gray-400 mb-2">Scroll para explorar</span>
-        <div class="w-6 h-10 border-2 border-nextsite-accent-blue/50 rounded-full flex justify-center relative">
-          <div class="w-1 h-3 bg-nextsite-accent-blue rounded-full mt-2 animate-pulse"></div>
+    <!-- Modern Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+      <div class="flex flex-col items-center gap-3 scroll-indicator">
+        <span class="text-xs md:text-sm text-gray-400 font-medium tracking-wide">Explorar más</span>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div class="scroll-arrow"></div>
+          <div class="scroll-arrow" style="animation-delay: 0.2s;"></div>
+          <div class="scroll-arrow" style="animation-delay: 0.4s;"></div>
         </div>
       </div>
     </div>
@@ -133,7 +154,7 @@ import Button from '../components/Button.astro';
       
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Quick Service 1 -->
-        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105">
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105 card reveal" data-tilt>
           <div class="w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <span class="text-3xl">💻</span>
           </div>
@@ -141,13 +162,13 @@ import Button from '../components/Button.astro';
           <p class="text-gray-400 mb-6 leading-relaxed">
             Sitios web modernos, rápidos y optimizados que convierten visitantes en clientes.
           </p>
-          <Button href="/servicios" variant="ghost" size="sm">
+          <Button href="/servicios" variant="ghost" size="sm" class="btn">
             Ver Detalles
           </Button>
         </div>
         
         <!-- Quick Service 2 -->
-        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105" style="animation-delay: 0.2s;">
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105 card reveal" data-tilt style="animation-delay: 0.2s;">
           <div class="w-20 h-20 bg-gradient-to-r from-nextsite-accent-blue to-nextsite-light-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <span class="text-3xl">🎨</span>
           </div>
@@ -155,13 +176,13 @@ import Button from '../components/Button.astro';
           <p class="text-gray-400 mb-6 leading-relaxed">
             Interfaces intuitivas y atractivas que mejoran la experiencia del usuario.
           </p>
-          <Button href="/servicios" variant="ghost" size="sm">
+          <Button href="/servicios" variant="ghost" size="sm" class="btn">
             Ver Detalles
           </Button>
         </div>
         
         <!-- Quick Service 3 -->
-        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105" style="animation-delay: 0.4s;">
+        <div class="glass rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 group animate-fade-in-up transform hover:scale-105 card reveal" data-tilt style="animation-delay: 0.4s;">
           <div class="w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <span class="text-3xl">⚡</span>
           </div>
@@ -169,7 +190,7 @@ import Button from '../components/Button.astro';
           <p class="text-gray-400 mb-6 leading-relaxed">
             Mejora el rendimiento y velocidad de tu sitio web para mejores resultados.
           </p>
-          <Button href="/servicios" variant="ghost" size="sm">
+          <Button href="/servicios" variant="ghost" size="sm" class="btn">
             Ver Detalles
           </Button>
         </div>
@@ -190,53 +211,93 @@ import Button from '../components/Button.astro';
       </div>
       
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Featured Project 1 -->
-        <div class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group animate-fade-in-left transform hover:scale-105">
-          <div class="h-64 bg-gradient-to-br from-nextsite-light-blue to-nextsite-accent-blue flex items-center justify-center relative overflow-hidden">
-            <span class="text-6xl">🌐</span>
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
-          </div>
-          <div class="p-8">
-            <h3 class="text-2xl font-bold text-white mb-3">E-commerce Moderno</h3>
-            <p class="text-gray-400 mb-6 leading-relaxed">
-              Plataforma completa de comercio electrónico con carrito, pagos y panel de administración.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">React</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">Node.js</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">MongoDB</span>
+        {featuredProjects.map((project, index) => (
+          <div class={`glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group transform hover:scale-105 card reveal ${index === 0 ? 'animate-fade-in-left' : 'animate-fade-in-right'}`} data-tilt>
+            {/* Project Cover Image or Fallback */}
+            <div class="h-64 relative overflow-hidden">
+              {project.data.cover ? (
+                <img 
+                  src={project.data.cover} 
+                  alt={project.data.title}
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              ) : (
+                <div class="w-full h-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+                  <span class="text-6xl">
+                    {project.data.title.includes('Tienda') || project.data.title.includes('E-commerce') ? '🛒' : 
+                     project.data.title.includes('Landing') || project.data.title.includes('Barber') ? '✂️' : 
+                     project.data.title.includes('Portfolio') ? '💼' : '🌐'}
+                  </span>
+                </div>
+              )}
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
+              
+              {/* Featured Badge */}
+              <div class="absolute top-4 right-4">
+                <span class="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  Destacado
+                </span>
+              </div>
             </div>
-            <Button href="/proyectos" size="sm" variant="ghost">
-              Ver Proyecto Completo
-            </Button>
+            
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-white mb-3">{project.data.title}</h3>
+              <p class="text-gray-400 mb-6 leading-relaxed">
+                {project.data.summary}
+              </p>
+              
+              {/* Tech Stack */}
+              <div class="flex flex-wrap gap-2 mb-6">
+                {project.data.stack.slice(0, 3).map((tech) => (
+                  <span class="px-3 py-1 bg-cyan-400/20 text-cyan-400 rounded-full text-xs pill">
+                    {tech}
+                  </span>
+                ))}
+                {project.data.stack.length > 3 && (
+                  <span class="px-3 py-1 bg-gray-600/20 text-gray-400 rounded-full text-xs pill">
+                    +{project.data.stack.length - 3}
+                  </span>
+                )}
+              </div>
+              
+              {/* Action Buttons */}
+              <div class="flex gap-3">
+                <Button href={`/projects/${project.slug}`} size="sm" variant="primary" class="btn flex-1">
+                  Ver Proyecto
+                </Button>
+                {project.data.demoUrl && (
+                  <a 
+                    href={project.data.demoUrl} 
+                    target="_blank" 
+                    rel="noopener"
+                    class="px-4 py-2 text-sm font-medium text-cyan-400 border border-cyan-400/30 hover:bg-cyan-400/10 rounded-lg transition-all duration-200 flex items-center gap-2"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    Demo
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
         
-        <!-- Featured Project 2 -->
-        <div class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 group animate-fade-in-right transform hover:scale-105">
-          <div class="h-64 bg-gradient-to-br from-nextsite-accent-blue to-nextsite-light-blue flex items-center justify-center relative overflow-hidden">
-            <span class="text-6xl">📱</span>
-            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
-          </div>
-          <div class="p-8">
-            <h3 class="text-2xl font-bold text-white mb-3">App de Gestión</h3>
-            <p class="text-gray-400 mb-6 leading-relaxed">
-              Aplicación web para gestión de inventario con dashboard interactivo y reportes.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">Vue.js</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">Firebase</span>
-              <span class="px-3 py-1 bg-nextsite-light-blue/20 text-nextsite-accent-blue rounded-full text-xs">Chart.js</span>
-            </div>
-            <Button href="/proyectos" size="sm" variant="ghost">
-              Ver Proyecto Completo
+        {/* Fallback if no featured projects */}
+        {featuredProjects.length === 0 && (
+          <div class="col-span-2 text-center py-12">
+            <div class="text-4xl mb-4">🚧</div>
+            <h3 class="text-xl font-bold text-white mb-2">Proyectos Destacados Próximamente</h3>
+            <p class="text-gray-400 mb-6">Estoy preparando mis mejores proyectos para mostrarte aquí.</p>
+            <Button href="/projects" size="md" class="btn">
+              Ver Todos los Proyectos
             </Button>
           </div>
-        </div>
+        )}
       </div>
       
       <div class="text-center mt-12">
-        <Button href="/proyectos" size="lg">
+        <Button href="/projects" size="lg" class="btn">
           Ver Todos los Proyectos
         </Button>
       </div>
@@ -280,7 +341,7 @@ import Button from '../components/Button.astro';
           </div>
           
           <div class="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button href="/contacto" size="lg" class="animate-pulse-glow">
+            <Button href="/contacto" size="lg" class="animate-pulse-glow btn">
               <span class="flex items-center gap-2">
                 Iniciar Proyecto
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,7 +349,7 @@ import Button from '../components/Button.astro';
                 </svg>
               </span>
             </Button>
-            <Button href="/sobre-mi" variant="ghost" size="lg">
+            <Button href="/sobre-mi" variant="ghost" size="lg" class="btn">
               <span class="flex items-center gap-2">
                 Conoce Más Sobre Mí
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -318,4 +379,136 @@ import Button from '../components/Button.astro';
     background-size: 200% 200%;
     animation: gradient-x 3s ease infinite;
   }
+
+  /* Modern Scroll Indicator */
+  .scroll-indicator {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+
+  .scroll-indicator:hover {
+    opacity: 1;
+  }
+
+  .scroll-mouse {
+    width: 24px;
+    height: 40px;
+    border: 2px solid rgba(6, 182, 212, 0.6);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 6px;
+  }
+
+  .scroll-wheel {
+    width: 3px;
+    height: 8px;
+    background: linear-gradient(to bottom, #06b6d4, #3b82f6);
+    border-radius: 2px;
+    animation: scroll-wheel 2s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid rgba(6, 182, 212, 0.7);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.7);
+    transform: rotate(45deg);
+    animation: scroll-arrow 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-wheel {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(8px);
+    }
+  }
+
+  @keyframes scroll-arrow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: rotate(45deg) translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: rotate(45deg) translateY(4px);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .scroll-mouse {
+      width: 20px;
+      height: 32px;
+      padding-top: 4px;
+    }
+    
+    .scroll-wheel {
+      width: 2px;
+      height: 6px;
+    }
+    
+    .scroll-arrow {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  /* Hide scroll indicator after user scrolls */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-indicator {
+      animation: none;
+    }
+    
+    .scroll-wheel,
+    .scroll-arrow {
+      animation: none;
+    }
+  }
 </style>
+
+<!-- Enhanced interactions -->
+<script>
+  import { parallax } from "../scripts/parallax.js";
+  import { revealOnScroll } from "../scripts/reveal.js";
+  import { ripple } from "../scripts/ripple.js";
+  
+  parallax();
+  revealOnScroll();
+  ripple();
+
+  // Hide scroll indicator after user scrolls
+  let scrolled = false;
+  window.addEventListener('scroll', function() {
+    if (!scrolled && window.scrollY > 50) {
+      scrolled = true;
+      const indicator = document.querySelector('.scroll-indicator');
+      if (indicator) {
+        indicator.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        indicator.style.opacity = '0';
+        indicator.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          indicator.style.display = 'none';
+        }, 500);
+      }
+    }
+  });
+
+  // Add smooth scroll to indicator click
+  document.querySelector('.scroll-indicator')?.addEventListener('click', function() {
+    const nextSection = document.querySelector('section:nth-of-type(2)');
+    if (nextSection) {
+      nextSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+</script>

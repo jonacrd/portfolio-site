@@ -129,12 +129,15 @@ const { data: projectData } = project;
               <div style="width:12px;height:12px;border-radius:50%;background:#28ca42;"></div>
               <span style="margin-left:16px;color:#9aa3b2;font-size:.9rem;">{projectData.demoUrl}</span>
             </div>
-            <iframe 
-              src={projectData.demoUrl} 
-              loading="lazy" 
-              style="width:100%;height:70vh;border:0;display:block;"
-              title={`Demo de ${projectData.title}`}
-            ></iframe>
+            <div class="skeleton" style="border-radius:0;height:70vh">
+              <iframe 
+                src={projectData.demoUrl} 
+                loading="lazy" 
+                style="width:100%;height:100%;border:0;display:block;"
+                title={`Demo de ${projectData.title}`}
+                onload="this.parentElement.classList.remove('skeleton')"
+              ></iframe>
+            </div>
           </div>
         ) : (
           <div style="text-align:center;padding:4rem 2rem;border:2px dashed rgba(255,255,255,.1);border-radius:16px;">
@@ -160,20 +163,15 @@ const { data: projectData } = project;
       <!-- Screenshots Tab -->
       <div id="tab-shots" class="tab-panel" style="display:none;">
         {projectData.images.length > 0 ? (
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+          <div class="shots" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
             {projectData.images.map((imageSrc, index) => (
-              <div 
-                style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2);transition:transform 0.3s ease;"
-                onmouseover="this.style.transform='scale(1.02)'"
-                onmouseout="this.style.transform='scale(1)'"
-              >
-                <img 
-                  src={imageSrc} 
-                  alt={`Captura ${index + 1} de ${projectData.title}`}
-                  style="width:100%;height:auto;display:block;"
-                  loading="lazy"
-                />
-              </div>
+              <img 
+                class="shot" 
+                src={imageSrc} 
+                alt={`Captura ${index + 1} de ${projectData.title}`}
+                style="width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.2);"
+                loading="lazy"
+              />
             ))}
           </div>
         ) : (
@@ -295,5 +293,20 @@ const { data: projectData } = project;
         });
       });
     });
+  </script>
+
+  <!-- Lightbox -->
+  <div id="lightbox" hidden>
+    <button data-close>×</button>
+    <img id="big" alt="preview" />
+  </div>
+
+  <!-- Enhanced interactions -->
+  <script>
+    import { enableLightbox } from "../../scripts/lightbox.js";
+    import { ripple } from "../../scripts/ripple.js";
+    
+    enableLightbox(document);
+    ripple();
   </script>
 </Layout>

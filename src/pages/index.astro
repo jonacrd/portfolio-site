@@ -18,7 +18,7 @@ const featuredProjects = allProjects
   description="Desarrollador web profesional especializado en crear experiencias digitales excepcionales. Servicios de desarrollo frontend, diseño UI/UX y soluciones web modernas."
 >
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden" data-parallax>
     <!-- Animated Background -->
     <div class="absolute inset-0 bg-gradient-to-br from-nextsite-bg-darker via-nextsite-dark-blue to-nextsite-bg-dark"></div>
     
@@ -27,50 +27,26 @@ const featuredProjects = allProjects
       <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.3) 1px, transparent 0); background-size: 50px 50px; animation: grid-move 20s linear infinite;"></div>
     </div>
     
-    <!-- Floating Geometric Shapes -->
-    <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-full blur-xl animate-float opacity-30"></div>
-    <div class="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-r from-nextsite-accent-blue to-nextsite-light-blue rounded-full blur-xl animate-float opacity-20" style="animation-delay: 1s;"></div>
-    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-white to-nextsite-accent-blue rounded-full blur-lg animate-float opacity-25" style="animation-delay: 2s;"></div>
-    <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-nextsite-light-blue to-white rounded-full blur-lg animate-float opacity-20" style="animation-delay: 3s;"></div>
+    <!-- Floating Geometric Shapes with Parallax -->
+    <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-full blur-xl animate-float opacity-30" data-depth="0.6"></div>
+    <div class="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-r from-nextsite-accent-blue to-nextsite-light-blue rounded-full blur-xl animate-float opacity-20" style="animation-delay: 1s;" data-depth="0.4"></div>
+    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-white to-nextsite-accent-blue rounded-full blur-lg animate-float opacity-25" style="animation-delay: 2s;" data-depth="0.8"></div>
+    <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-nextsite-light-blue to-white rounded-full blur-lg animate-float opacity-20" style="animation-delay: 3s;" data-depth="1.2"></div>
+    <div class="absolute bottom-1/3 left-1/3 w-8 h-8 bg-cyan-400 rounded-full opacity-40" data-depth="0.3"></div>
     
     <!-- Main Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
       <div class="animate-fade-in-up">
-        <!-- Profile Avatar with Advanced Animation -->
-        <div class="relative mb-12">
-          <div class="w-40 h-40 mx-auto rounded-full bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue p-1 animate-pulse-glow">
-            <div class="w-full h-full rounded-full overflow-hidden">
-              <img 
-                src="/jonadevel.jpg" 
-                alt="Jonathan Guarirapa - Desarrollador Web"
-                class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="w-full h-full bg-nextsite-bg-dark flex items-center justify-center" style="display: none;">
-                <span class="text-5xl font-bold text-white">JG</span>
-              </div>
-            </div>
-          </div>
-          <!-- Orbiting Elements -->
-          <div class="absolute inset-0 animate-spin" style="animation-duration: 20s;">
-            <div class="absolute top-0 left-1/2 w-2 h-2 bg-nextsite-accent-blue rounded-full transform -translate-x-1/2 -translate-y-1"></div>
-          </div>
-          <div class="absolute inset-0 animate-spin" style="animation-duration: 15s; animation-direction: reverse;">
-            <div class="absolute bottom-0 left-1/2 w-1 h-1 bg-nextsite-light-blue rounded-full transform -translate-x-1/2 translate-y-1"></div>
-          </div>
+        <!-- Avatar con halo -->
+        <div id="pfp" class="relative mb-12" style="position:relative;display:inline-block">
+          <img src="/jonadevel.jpg" alt="Jonathan Guarirapa" width="112" height="112" style="width:112px;height:112px;border-radius:999px;position:relative;z-index:2;object-fit:cover">
+          <div class="halo"></div>
         </div>
         
         <!-- Main Heading with Typewriter Effect -->
         <div class="mb-8">
-        <h1 class="text-6xl md:text-8xl font-bold mb-4 reveal">
-          <span class="text-white block">Hola, soy</span>
-          <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent animate-gradient-x">
-            Jonathan
-          </span>
-          <span class="bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent animate-gradient-x" style="animation-delay: 0.5s;">
-            Guarirapa
-          </span>
-      </h1>
+        <h1 class="text-6xl md:text-8xl font-bold mb-4 reveal">Hola, soy</h1>
+        <h2 class="grad-wobble text-6xl md:text-8xl font-bold mb-4">Jonathan Guarirapa</h2>
         </div>
         
         <!-- Animated Subtitle -->
@@ -123,17 +99,30 @@ const featuredProjects = allProjects
             <div class="text-sm text-gray-400">Soporte Disponible</div>
           </div>
         </div>
+
+        <!-- Chips de prueba -->
+        <div class="proofs text-center" style="margin-top:24px">
+          <a class="chip" href="/projects">⚡ 90+ Lighthouse Mobile</a>
+          <a class="chip" href="/projects">⬇️ Payload inicial < 70KB</a>
+          <a class="chip" href="/projects">🧪 Previews por PR (Vercel)</a>
+        </div>
       </div>
     </div>
     
-    <!-- Advanced Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-      <div class="flex flex-col items-center gap-2 animate-bounce">
-        <span class="text-sm text-gray-400 mb-2">Scroll para explorar</span>
-        <div class="w-6 h-10 border-2 border-nextsite-accent-blue/50 rounded-full flex justify-center relative">
-          <div class="w-1 h-3 bg-nextsite-accent-blue rounded-full mt-2 animate-pulse"></div>
-        </div>
+    <!-- Scroll Teaser -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+      <div id="teaser" style="margin:20px 0 0;opacity:.7;cursor:pointer;text-center">Explorar más ⌄</div>
+    </div>
+  </section>
+
+  <!-- CTA de conversión -->
+  <section class="py-12 bg-nextsite-bg-darker">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px">
+        <a class="btn" href="mailto:jonacrd@gmail.com">Pídeme una propuesta en 24h</a>
+        <a class="btn" href="/projects" style="background:transparent;color:#e5e7eb;outline:1px solid #ffffff22">Ver casos</a>
       </div>
+      <p style="opacity:.7;margin-top:12px;text-align:center;color:#9aa3b2;font-size:14px">Si la primera propuesta no te sirve, no hay obligación. Cero humo.</p>
     </div>
   </section>
 
@@ -319,21 +308,21 @@ const featuredProjects = allProjects
                 <span class="text-3xl">📧</span>
               </div>
               <h3 class="text-white font-semibold mb-2">Email Directo</h3>
-              <p class="text-gray-400 text-sm">jonathan@example.com</p>
+              <p class="text-gray-400 text-sm">jonacrd@gmail.com</p>
             </div>
             <div class="text-center">
               <div class="w-20 h-20 bg-gradient-to-r from-nextsite-accent-blue to-nextsite-light-blue rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span class="text-3xl">💼</span>
               </div>
               <h3 class="text-white font-semibold mb-2">LinkedIn</h3>
-              <p class="text-gray-400 text-sm">linkedin.com/in/jonathan</p>
+              <p class="text-gray-400 text-sm">linkedin.com/in/jonacrd</p>
             </div>
             <div class="text-center">
               <div class="w-20 h-20 bg-gradient-to-r from-nextsite-light-blue to-nextsite-accent-blue rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span class="text-3xl">📱</span>
               </div>
               <h3 class="text-white font-semibold mb-2">WhatsApp</h3>
-              <p class="text-gray-400 text-sm">+1 (555) 123-4567</p>
+              <p class="text-gray-400 text-sm">+56 9 6261-4851</p>
             </div>
           </div>
           
@@ -376,4 +365,131 @@ const featuredProjects = allProjects
     background-size: 200% 200%;
     animation: gradient-x 3s ease infinite;
   }
+
+  /* Modern Scroll Indicator */
+  .scroll-indicator {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+
+  .scroll-indicator:hover {
+    opacity: 1;
+  }
+
+  .scroll-mouse {
+    width: 24px;
+    height: 40px;
+    border: 2px solid rgba(6, 182, 212, 0.6);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 6px;
+  }
+
+  .scroll-wheel {
+    width: 3px;
+    height: 8px;
+    background: linear-gradient(to bottom, #06b6d4, #3b82f6);
+    border-radius: 2px;
+    animation: scroll-wheel 2s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid rgba(6, 182, 212, 0.7);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.7);
+    transform: rotate(45deg);
+    animation: scroll-arrow 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-wheel {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(8px);
+    }
+  }
+
+  @keyframes scroll-arrow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: rotate(45deg) translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: rotate(45deg) translateY(4px);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .scroll-mouse {
+      width: 20px;
+      height: 32px;
+      padding-top: 4px;
+    }
+    
+    .scroll-wheel {
+      width: 2px;
+      height: 6px;
+    }
+    
+    .scroll-arrow {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  /* Hide scroll indicator after user scrolls */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-indicator {
+      animation: none;
+    }
+    
+    .scroll-wheel,
+    .scroll-arrow {
+      animation: none;
+    }
+  }
 </style>
+
+<!-- Enhanced interactions -->
+<script>
+  // halo que sigue el mouse
+  const p=document.getElementById('pfp'); if(p){
+    const h=p.querySelector('.halo');
+    p.addEventListener('pointermove',e=>{
+      const r=p.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      h.style.transform=`translate(${x*6}px,${y*6}px)`;
+    });
+    p.addEventListener('pointerleave',()=>h.style.transform='');
+  }
+  
+  // botones magnéticos + ripple
+  document.querySelectorAll('.btn').forEach(b=>{
+    b.addEventListener('pointermove',e=>{
+      const r=b.getBoundingClientRect();
+      b.style.setProperty('--rx',`${e.clientX-r.left}px`);
+      b.style.setProperty('--ry',`${e.clientY-r.top}px`);
+    });
+    b.addEventListener('pointerdown',()=>{b.classList.add('is-rp'); setTimeout(()=>b.classList.remove('is-rp'),180);});
+  });
+
+  // scroll teaser
+  const t=document.getElementById('teaser'); 
+  t?.addEventListener('click',()=>window.scrollBy({top:window.innerHeight*.8,behavior:'smooth'}));
+
+  // import existing scripts
+  import { parallax } from "../scripts/parallax.js";
+  import { revealOnScroll } from "../scripts/reveal.js";
+  
+  parallax();
+  revealOnScroll();
+</script>

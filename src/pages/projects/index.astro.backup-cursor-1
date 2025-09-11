@@ -47,7 +47,6 @@ const projects = (await getCollection("projects")).sort((a, b) => b.data.order -
                 src={project.data.cover} 
                 alt={project.data.title} 
                 style="width:100%;height:200px;object-fit:cover;transition:transform 0.3s ease;"
-                loading="lazy"
                 onmouseover="this.style.transform='scale(1.05)'"
                 onmouseout="this.style.transform='scale(1)'"
               />
@@ -73,45 +72,13 @@ const projects = (await getCollection("projects")).sort((a, b) => b.data.order -
           </p>
 
           <!-- Tech Stack -->
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;">
             {project.data.stack.map((tech) => (
               <span style="border:1px solid #2b2f36;border-radius:999px;padding:.3rem .7rem;font-size:.8rem;color:#cbd5e1;background:rgba(255,255,255,.02);">
                 {tech}
               </span>
             ))}
           </div>
-
-          <!-- Mini-story -->
-          <ul class="mini" style="margin:.5rem 0 1.5rem;padding-left:18px;color:#9aa3b2;">
-            {project.slug === 'tienda-online' && (
-              <>
-                <li>Qué: E-commerce con Stripe + Webhook</li>
-                <li>Cómo: SSR + API Routes + Prisma</li>
-                <li>Resultado: +25% conversión vs template</li>
-              </>
-            )}
-            {project.slug === 'landing-barberia' && (
-              <>
-                <li>Qué: Landing con reservas automáticas</li>
-                <li>Cómo: Forms + Google Apps Script</li>
-                <li>Resultado: 95+ Lighthouse score</li>
-              </>
-            )}
-            {project.slug === 'portfolio-web' && (
-              <>
-                <li>Qué: Portfolio con CMS headless</li>
-                <li>Cómo: Astro + Content Collections</li>
-                <li>Resultado: < 2s carga inicial</li>
-              </>
-            )}
-            {!['tienda-online', 'landing-barberia', 'portfolio-web'].includes(project.slug) && (
-              <>
-                <li>Qué: Solución web moderna</li>
-                <li>Cómo: Stack optimizado</li>
-                <li>Resultado: Performance excepcional</li>
-              </>
-            )}
-          </ul>
 
           <!-- Action Buttons -->
           <div style="display:flex;gap:.8rem;margin-top:auto;">

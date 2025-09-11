@@ -1,0 +1,616 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout 
+  title="Sobre Mí | Jonathan Guarirapa - Desarrollador Web"
+  description="Conoce más sobre Jonathan Guarirapa, desarrollador web profesional con más de 3 años de experiencia. Mi historia, habilidades, experiencia y pasión por el desarrollo web."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-nextsite-bg-darker via-nextsite-dark-blue to-nextsite-bg-dark"></div>
+    
+    <!-- Animated Elements -->
+    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-2xl animate-float opacity-20"></div>
+    <div class="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full blur-2xl animate-float opacity-15" style="animation-delay: 2s;"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Profile Content -->
+        <div class="animate-fade-in-left">
+          <div class="mb-8">
+            <span class="text-cyan-400 font-semibold mb-2 block">Desarrollador Web</span>
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+              Sobre 
+              <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Mí
+              </span>
+            </h1>
+            <p class="text-xl text-gray-300 leading-relaxed mb-8">
+              Soy Jonathan Guarirapa, un desarrollador web apasionado por crear experiencias digitales 
+              excepcionales que combinan diseño moderno, rendimiento óptimo y funcionalidad intuitiva.
+            </p>
+          </div>
+          
+          <!-- Quick Stats -->
+          <div class="grid grid-cols-3 gap-6 mb-8">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-cyan-400 mb-2">3+</div>
+              <div class="text-sm text-gray-400">Años de Experiencia</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-cyan-400 mb-2">50+</div>
+              <div class="text-sm text-gray-400">Proyectos Completados</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-cyan-400 mb-2">100%</div>
+              <div class="text-sm text-gray-400">Satisfacción Cliente</div>
+            </div>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <Button href="/contacto" size="lg">
+              Trabajemos Juntos
+            </Button>
+            <Button href="/projects" variant="ghost" size="lg">
+              Ver Mi Trabajo
+            </Button>
+          </div>
+        </div>
+        
+        <!-- Profile Image -->
+        <div class="animate-fade-in-right">
+          <div class="relative">
+            <div class="w-80 h-80 mx-auto rounded-3xl bg-gradient-to-r from-cyan-400 to-blue-500 p-1">
+              <div class="w-full h-full rounded-3xl overflow-hidden">
+                <img 
+                  src="/jonadevel.jpg" 
+                  alt="Jonathan Guarirapa - Desarrollador Web"
+                  class="w-full h-full object-cover"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="w-full h-full bg-nextsite-bg-dark flex items-center justify-center" style="display: none;">
+                  <span class="text-8xl font-bold text-white">JG</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Decorative Elements -->
+            <div class="absolute -top-4 -right-4 w-24 h-24 bg-cyan-400/20 rounded-full blur-xl"></div>
+            <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/20 rounded-full blur-xl"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Story Section -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Mi <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Historia</span>
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
+      </div>
+      
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="animate-fade-in-left">
+          <h3 class="text-2xl font-bold text-white mb-6">El Comienzo de Mi Pasión</h3>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Mi viaje en el desarrollo web comenzó hace más de 3 años, cuando descubrí que podía 
+            combinar mi creatividad con la lógica para crear soluciones digitales que realmente 
+            impactan en los negocios y en la vida de las personas.
+          </p>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            Desde entonces, me he especializado en tecnologías modernas como React, Node.js, y 
+            frameworks como Astro, siempre con el objetivo de crear experiencias web rápidas, 
+            accesibles y visualmente atractivas.
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            Cada proyecto es una oportunidad para aprender algo nuevo y superar los límites de 
+            lo que es posible en la web moderna.
+          </p>
+        </div>
+        
+        <div class="animate-fade-in-right">
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-2">Rendimiento Primero</h4>
+                <p class="text-gray-400">Optimizo cada línea de código para lograr tiempos de carga ultrarrápidos y experiencias fluidas.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-2">Diseño Responsive</h4>
+                <p class="text-gray-400">Creo interfaces que se adaptan perfectamente a cualquier dispositivo y tamaño de pantalla.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-2">Innovación Constante</h4>
+                <p class="text-gray-400">Siempre estoy explorando nuevas tecnologías y metodologías para ofrecer soluciones de vanguardia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20 bg-nextsite-bg-darker">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Mis <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Valores</span>
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Estos son los principios que guían cada proyecto y decisión en mi trabajo como desarrollador web.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+          <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Excelencia Técnica</h3>
+          <p class="text-gray-400">
+            Código limpio, bien documentado y siguiendo las mejores prácticas de la industria.
+          </p>
+        </div>
+        
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+          <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Puntualidad</h3>
+          <p class="text-gray-400">
+            Respeto los plazos acordados y mantengo una comunicación transparente sobre el progreso.
+          </p>
+        </div>
+        
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+          <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Colaboración</h3>
+          <p class="text-gray-400">
+            Trabajo en equipo, escucho feedback y adapto las soluciones según las necesidades del cliente.
+          </p>
+        </div>
+        
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+          <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Accesibilidad</h3>
+          <p class="text-gray-400">
+            Creo experiencias inclusivas que pueden ser utilizadas por personas con diversas capacidades.
+          </p>
+        </div>
+        
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+          <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Seguridad</h3>
+          <p class="text-gray-400">
+            Implemento las mejores prácticas de seguridad para proteger los datos y la privacidad.
+          </p>
+        </div>
+        
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+          <div class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Aprendizaje Continuo</h3>
+          <p class="text-gray-400">
+            Me mantengo actualizado con las últimas tecnologías y tendencias del desarrollo web.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Mis <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Habilidades</span>
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Tecnologías y herramientas que domino para crear soluciones web completas y eficientes.
+        </p>
+      </div>
+      
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Technical Skills -->
+        <div class="animate-fade-in-left">
+          <h3 class="text-2xl font-bold text-white mb-8">Habilidades Técnicas</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">JavaScript / TypeScript</span>
+                <span class="text-cyan-400">95%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">React / Next.js</span>
+                <span class="text-cyan-400">90%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">Node.js / Express</span>
+                <span class="text-cyan-400">85%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">CSS / Tailwind CSS</span>
+                <span class="text-cyan-400">92%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 92%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">Bases de Datos (SQL/NoSQL)</span>
+                <span class="text-cyan-400">80%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Soft Skills -->
+        <div class="animate-fade-in-right">
+          <h3 class="text-2xl font-bold text-white mb-8">Habilidades Blandas</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">Resolución de Problemas</span>
+                <span class="text-cyan-400">98%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 98%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">Comunicación</span>
+                <span class="text-cyan-400">94%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 94%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">Trabajo en Equipo</span>
+                <span class="text-cyan-400">96%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 96%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">Gestión de Proyectos</span>
+                <span class="text-cyan-400">88%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 88%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-white font-medium">Adaptabilidad</span>
+                <span class="text-cyan-400">92%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 92%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Timeline -->
+  <section class="py-20 bg-nextsite-bg-darker">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Mi <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Experiencia</span>
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
+      </div>
+      
+      <div class="relative">
+        <!-- Timeline Line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-cyan-400 to-blue-500"></div>
+        
+        <!-- Timeline Items -->
+        <div class="space-y-12">
+          <div class="flex items-center">
+            <div class="w-1/2 pr-8 text-right">
+              <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+                <span class="text-cyan-400 font-semibold">2024 - Presente</span>
+                <h3 class="text-xl font-bold text-white mt-2 mb-3">Desarrollador Web Freelance</h3>
+                <p class="text-gray-400">
+                  Desarrollo de aplicaciones web modernas con React, Node.js y tecnologías de vanguardia. 
+                  Especialización en optimización de rendimiento y experiencia de usuario.
+                </p>
+              </div>
+            </div>
+            <div class="w-4 h-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full relative z-10"></div>
+            <div class="w-1/2 pl-8"></div>
+          </div>
+          
+          <div class="flex items-center">
+            <div class="w-1/2 pr-8"></div>
+            <div class="w-4 h-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full relative z-10"></div>
+            <div class="w-1/2 pl-8">
+              <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+                <span class="text-cyan-400 font-semibold">2023 - 2024</span>
+                <h3 class="text-xl font-bold text-white mt-2 mb-3">Desarrollador Frontend</h3>
+                <p class="text-gray-400">
+                  Creación de interfaces de usuario responsivas y accesibles. Implementación de 
+                  sistemas de diseño y optimización de componentes reutilizables.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex items-center">
+            <div class="w-1/2 pr-8 text-right">
+              <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+                <span class="text-cyan-400 font-semibold">2022 - 2023</span>
+                <h3 class="text-xl font-bold text-white mt-2 mb-3">Desarrollador Junior</h3>
+                <p class="text-gray-400">
+                  Inicio en el desarrollo web profesional. Aprendizaje de mejores prácticas, 
+                  metodologías ágiles y trabajo en equipo en proyectos reales.
+                </p>
+              </div>
+            </div>
+            <div class="w-4 h-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full relative z-10"></div>
+            <div class="w-1/2 pl-8"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="py-20 bg-nextsite-bg-dark">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Mi <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Formación</span>
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+          <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Formación Autodidacta</h3>
+          <p class="text-gray-400 mb-4">
+            Aprendizaje continuo a través de cursos online, documentación oficial y proyectos prácticos.
+          </p>
+          <ul class="text-gray-400 space-y-2">
+            <li>• Certificaciones en React y Node.js</li>
+            <li>• Cursos de UI/UX Design</li>
+            <li>• Especialización en Performance Web</li>
+          </ul>
+        </div>
+        
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+          <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-4">Proyectos Prácticos</h3>
+          <p class="text-gray-400 mb-4">
+            Experiencia real desarrollando proyectos personales y para clientes.
+          </p>
+          <ul class="text-gray-400 space-y-2">
+            <li>• +50 proyectos completados</li>
+            <li>• Aplicaciones web full-stack</li>
+            <li>• E-commerce y landing pages</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fun Facts -->
+  <section class="py-20 bg-nextsite-bg-darker">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Datos <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Curiosos</span>
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Madrugador</h3>
+          <p class="text-gray-400">Mi mejor código lo escribo entre las 5:00 y 9:00 AM</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Café Adicto</h3>
+          <p class="text-gray-400">Consumo aproximadamente 4 tazas de café al día</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H15M9 10v4a2 2 0 002 2h2a2 2 0 002-2v-4M9 10V9a2 2 0 012-2h2a2 2 0 012 2v1"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Gamer</h3>
+          <p class="text-gray-400">Los videojuegos me inspiran para crear mejores UX</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Lector</h3>
+          <p class="text-gray-400">Leo al menos 2 libros técnicos al mes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-cyan-400/10 to-blue-500/10">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+        ¿Listo para crear algo
+        <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          increíble
+        </span>
+        juntos?
+      </h2>
+      <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+        Si tienes un proyecto en mente o simplemente quieres conversar sobre tecnología, 
+        no dudes en contactarme. Siempre estoy emocionado por nuevos desafíos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/contacto" size="lg">
+          Hablemos de tu Proyecto
+        </Button>
+        <Button href="/projects" variant="ghost" size="lg">
+          Ver Mi Portafolio
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes fade-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fade-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-fade-in-left {
+    animation: fade-in-left 0.8s ease-out;
+  }
+  
+  .animate-fade-in-right {
+    animation: fade-in-right 0.8s ease-out;
+  }
+</style>
