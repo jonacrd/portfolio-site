@@ -3,12 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
 import { getCollection } from 'astro:content';
 
-// Get featured projects for the homepage
+// Get featured projects for the homepage - only Tienda Online and Landing Barberia
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
-  .filter(project => project.data.featured)
-  .sort((a, b) => b.data.order - a.data.order)
-  .slice(0, 2); // Show only top 2 featured projects
+  .filter(project => project.data.featured && (
+    project.slug === 'tienda-online' || 
+    project.slug === 'landing-barberia'
+  ))
+  .sort((a, b) => b.data.order - a.data.order); // Tienda Online first (order: 100), then Landing (order: 90)
 ---
 
 <Layout 

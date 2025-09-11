@@ -6,7 +6,7 @@ demoUrl: "https://blessed-by-god-web-lbzl.vercel.app/"
 repoUrl: "https://github.com/jonacrd/blessed-by-god"
 branch: "main"
 codeFiles: ["README.md", "src/components/Hero.astro", "src/styles/tokens.css"]
-cover: "/images/projects/landing-barberia/cover.jpg"
+cover: "/images/projects/landing-barberia/cover.svg"
 images: [
   "/images/projects/landing-barberia/1.jpg",
   "/images/projects/landing-barberia/2.jpg"

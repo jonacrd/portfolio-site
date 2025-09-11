@@ -6,7 +6,7 @@ demoUrl: "https://astro-sitio.vercel.app/"
 repoUrl: "https://github.com/jonacrd/astro-sitio"
 branch: "main"
 codeFiles: ["README.md", "src/pages/index.astro", "src/components/Cart.tsx"]
-cover: "/images/projects/tienda-online/cover.jpg"
+cover: "/images/projects/tienda-online/cover.svg"
 images: [
   "/images/projects/tienda-online/1.jpg",
   "/images/projects/tienda-online/2.jpg"
